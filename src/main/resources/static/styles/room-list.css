@@ -3,14 +3,16 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
+  padding: 0;
 }
 
 .room-card {
-  width: 300px;
-  margin-bottom: 20px;
+  width: 320px;
+  margin: 0 10px 10px 0;
   padding: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   border-radius: 4px;
+  list-style: none;
 }
 
 .room-card img {
