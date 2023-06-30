@@ -1,0 +1,2 @@
+function filterByLocation();
+function fileterByPrice();

@@ -1,10 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <link rel="stylesheet" href="../../styles/room-list.css" />
+    <title>Room-list</title>
   </head>
-  <body></body>
+  <body>
+    <h1>Discover Your Perfect Shared House</h1>
+    <h2>Room Listings</h2>
+
+    <div class="filter-buttons">
+      <button id="price-filter">Sort by Price</button>
+      <button id="location-filter">Sort by Location</button>
+    </div>
+
+    <ul class="room-cards">
+      <li th:each="room : ${r}" class="room-card">
+        <img src="" alt="Room" />
+        <h2 th:text="${room.title}"></h2>
+        <p th:text="${room.city}"></p>
+        <p th:text="${room.startingDate}"></p>
+        <p th:text="${room.price}"></p>
+        <button>View Details</button>
+      </li>
+    </ul>
+  </body>
 </html>

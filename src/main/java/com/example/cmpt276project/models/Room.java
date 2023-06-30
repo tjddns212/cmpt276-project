@@ -9,18 +9,20 @@ public class Room {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int uid;
     private String title;
-    private String loaction;
+    private String address;
+    private String city;
     private Double price;
     private String description;
     private String startingDate;
     private String endingDate;
     public Room() {
     }
-    public Room(String title, String loaction, Double price, String description, String startingDate,
+    public Room(String title, String address,String city, Double price, String description, String startingDate,
         String endingDate) {
       this.title = title;
-      this.loaction = loaction;
+      this.address = address;
       this.price = price;
+      this.city=city;
       this.description = description;
       this.startingDate = startingDate;
       this.endingDate = endingDate;
@@ -31,11 +33,11 @@ public class Room {
     public void setTitle(String title) {
       this.title = title;
     }
-    public String getLoaction() {
-      return loaction;
+    public String getAddress() {
+      return address;
     }
-    public void setLoaction(String loaction) {
-      this.loaction = loaction;
+    public void setAddress(String address) {
+      this.address = address;
     }
     public Double getPrice() {
       return price;
@@ -67,7 +69,12 @@ public class Room {
     public void setUid(int uid) {
       this.uid = uid;
     }
-    
+    public String getCity() {
+      return city;
+    }
+    public void setCity(String city) {
+      this.city = city;
+    }
     
 
 }
