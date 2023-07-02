@@ -65,7 +65,7 @@
         <p id="city" th:text="${room.city}"></p>
         <p th:text="${room.startingDate}"></p>
         <p id ="price" th:text="${room.price}"></p>
-        <button>View Details</button>
+        <a th:href="@{'/roomListing/'+ ${room.uid}}">View Details</a>
       </li>
     </ul>
   </body>
