@@ -16,7 +16,9 @@ import com.example.cmpt276project.models.UserRepository;
 import com.example.cmpt276project.models.Room;
 import com.example.cmpt276project.models.RoomRepository;
 
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class UserController {
@@ -38,8 +40,20 @@ public class UserController {
         String newPassword = newuser.get("password");            
         userRepo.save(new User(newFirst, newLast, newNick, newGender, newEmail, newPassword,0));
         response.setStatus(201);
-        return "user/addedUser.html";
+        return "user/addedUser";
     }
+    @GetMapping("/login")
+    public String getLogin(Model model, HttpServletRequest request, HttpSession session){
+        User user = (User) session.getAttribute("session_user");
+        if (user == null){
+            return "login";
+        }
+        else {
+            model.addAttribute("user",user);
+            return "mainpage";
+        }
+    }
+<<<<<<< Updated upstream
     
     @GetMapping("user/get")
     public String getUserByUid(@RequestParam Map<String, String> newuser, HttpServletResponse response, Model model) {
@@ -63,6 +77,30 @@ public class UserController {
         user.setEmail(newuser.get("email"));
         user.setPassword(newuser.get("password"));
         userRepo.save(user);
+=======
+
+    @PostMapping("/login")
+    public String login(@RequestParam Map<String, String> formData, Model model, HttpServletRequest request, HttpSession session){
+        String email = formData.get("email");
+        String pwd = formData.get("password");
+        List<User> userlist = userRepo.findByEmailAndPassword(email,pwd);
+        if (userlist.isEmpty()){
+            return "login";
+        }
+        else{
+            User user = userlist.get(0);
+            request.getSession().setAttribute("session_user", user);
+            model.addAttribute("user", user);
+            return "mainpage.html";
+        }
+        
+    }
+    @GetMapping("/logout")
+    public String destroySession(HttpServletRequest request){
+        request.getSession().invalidate();
+        return "login";
+    }
+>>>>>>> Stashed changes
 
         if (user.getRoom() != 0) {
             List<Room> rooms = roomRepo.findByUid(user.getRoom());
