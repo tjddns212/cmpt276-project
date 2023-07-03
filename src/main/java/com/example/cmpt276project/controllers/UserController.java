@@ -53,7 +53,28 @@ public class UserController {
             return "mainpage";
         }
     }
-<<<<<<< Updated upstream
+    @PostMapping("/login")
+    public String login(@RequestParam Map<String, String> formData, Model model, HttpServletRequest request, HttpSession session){
+        String email = formData.get("email");
+        String pwd = formData.get("password");
+        List<User> userlist = userRepo.findByEmailAndPassword(email,pwd);
+        if (userlist.isEmpty()){
+            return "login";
+        }
+        else{
+            User user = userlist.get(0);
+            request.getSession().setAttribute("session_user", user);
+            model.addAttribute("user", user);
+            return "mainpage.html";
+        }
+        
+    }
+    @GetMapping("/logout")
+    public String destroySession(HttpServletRequest request){
+        request.getSession().invalidate();
+        return "login";
+    }
+//<<<<<<< Updated upstream
     
     @GetMapping("user/get")
     public String getUserByUid(@RequestParam Map<String, String> newuser, HttpServletResponse response, Model model) {
@@ -77,30 +98,10 @@ public class UserController {
         user.setEmail(newuser.get("email"));
         user.setPassword(newuser.get("password"));
         userRepo.save(user);
-=======
+//=======
 
-    @PostMapping("/login")
-    public String login(@RequestParam Map<String, String> formData, Model model, HttpServletRequest request, HttpSession session){
-        String email = formData.get("email");
-        String pwd = formData.get("password");
-        List<User> userlist = userRepo.findByEmailAndPassword(email,pwd);
-        if (userlist.isEmpty()){
-            return "login";
-        }
-        else{
-            User user = userlist.get(0);
-            request.getSession().setAttribute("session_user", user);
-            model.addAttribute("user", user);
-            return "mainpage.html";
-        }
-        
-    }
-    @GetMapping("/logout")
-    public String destroySession(HttpServletRequest request){
-        request.getSession().invalidate();
-        return "login";
-    }
->>>>>>> Stashed changes
+    
+//>>>>>>> Stashed changes
 
         if (user.getRoom() != 0) {
             List<Room> rooms = roomRepo.findByUid(user.getRoom());
