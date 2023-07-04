@@ -29,6 +29,16 @@ public class UserController {
     @Autowired
     public RoomRepository roomRepo;
     
+    // @GetMapping("/user/add")
+    // public String addUser(){
+    //     String email = formData.get("email");
+    //     List<User> userlist = userRepo.findByEmail(email);
+    //     if (userlist.isEmpty()){
+
+    //         return "login";
+    //     }
+    // }
+    
     @PostMapping("user/add")
     public String addUser(@RequestParam Map<String, String> newuser, HttpServletResponse response){
         System.out.println("Add User");
@@ -42,6 +52,7 @@ public class UserController {
         response.setStatus(201);
         return "user/addedUser";
     }
+
     @GetMapping("/login")
     public String getLogin(Model model, HttpServletRequest request, HttpSession session){
         User user = (User) session.getAttribute("session_user");
@@ -59,6 +70,7 @@ public class UserController {
         String pwd = formData.get("password");
         List<User> userlist = userRepo.findByEmailAndPassword(email,pwd);
         if (userlist.isEmpty()){
+
             return "login";
         }
         else{
@@ -79,24 +91,35 @@ public class UserController {
     @GetMapping("user/get")
     public String getUserByUid(@RequestParam Map<String, String> newuser, HttpServletResponse response, Model model) {
         System.out.println("Get User");
-        List<User> users = userRepo.findByUid(Integer.parseInt(newuser.get("uid")));
-        List<Room> rooms = roomRepo.findByUid(users.get(0).getRoom());
-        model.addAttribute("users", users);
-        model.addAttribute("rooms", rooms);
-        response.setStatus(201);
-        return "user/Profile";
+        try {
+            List<User> users = userRepo.findByUid(Integer.parseInt(newuser.get("uid")));
+            List<Room> rooms = roomRepo.findByUid(users.get(0).getRoom());
+            model.addAttribute("users", users);
+            model.addAttribute("rooms", rooms);
+            response.setStatus(201);
+            return "user/Profile";
+        } catch (Exception e) {
+            return "user/DNE";
+        }
     }
 
     @PostMapping("user/edit")
     public String editUserByUid(@RequestParam Map<String, String> newuser, HttpServletResponse response) {
         List<User> users = userRepo.findByUid(Integer.parseInt(newuser.get("uid")));
+        List<User> all = userRepo.findAll();
         User user = users.get(0);
         user.setFirst(newuser.get("first"));
         user.setLast(newuser.get("last"));
         user.setNick(newuser.get("nick"));
         user.setGender(newuser.get("gender"));
-        user.setEmail(newuser.get("email"));
         user.setPassword(newuser.get("password"));
+        for (int i = 0; i < all.size(); i ++) {
+            if (newuser.get("email").equals(all.get(i).getEmail())) {
+                userRepo.save(user);
+                return "user/emailUsed";
+            }
+        }
+        user.setEmail(newuser.get("email"));
         userRepo.save(user);
 //=======
 

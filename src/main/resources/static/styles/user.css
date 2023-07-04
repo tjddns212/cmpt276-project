@@ -1,0 +1,17 @@
+.mainframe {
+
+    float: left;
+    width: 400px;
+    background-color: rgb(223, 247, 246);
+    color: blue;
+    height : 400px;
+    padding : 10px;
+    margin: 4px;
+
+  }
+
+  h1 {
+    color:brown;
+    font-size: 14pt;
+    font-family: 'Times New Roman', Times, serif;
+  }
