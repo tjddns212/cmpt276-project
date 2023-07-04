@@ -40,8 +40,9 @@ public class UserController {
     //     }
     // }
     
-    @PostMapping("user/add")
-    public void addUser(@RequestParam Map<String, String> newuser, HttpServletResponse response) throws IOException{
+    // Add user
+    @PostMapping("user/adduser")
+    public String addUser(@RequestParam Map<String, String> newuser, HttpServletResponse response){
         System.out.println("Add User");
         String newFirst = newuser.get("first");
         String newLast = newuser.get("last");
@@ -49,7 +50,23 @@ public class UserController {
         String newGender = newuser.get("gender");
         String newEmail = newuser.get("email");
         String newPassword = newuser.get("password");            
-        userRepo.save(new User(newFirst, newLast, newNick, newGender, newEmail, newPassword,0));
+        userRepo.save(new User(newFirst, newLast, newNick, newGender, newEmail, newPassword,0, "S", ""));
+        response.setStatus(201);
+        return "user/addedUser";
+    }
+
+    // Add user landlord
+    @PostMapping("user/adduserLandlord")
+    public String addUserLandlord(@RequestParam Map<String, String> newuser, HttpServletResponse response){
+        System.out.println("Add User Landlord");
+        String newFirst = newuser.get("first");
+        String newLast = newuser.get("last");
+        String newNick = newuser.get("nick");
+        String newGender = newuser.get("gender");
+        String newEmail = newuser.get("email");
+        String newPassword = newuser.get("password");
+        String newLandlordAddress = newuser.get("landlordAddress");            
+        userRepo.save(new User(newFirst, newLast, newNick, newGender, newEmail, newPassword,0, "L", newLandlordAddress));
         response.setStatus(201);
         response.sendRedirect("/login.html");
     }
@@ -71,8 +88,7 @@ public class UserController {
         String pwd = formData.get("password");
         List<User> userlist = userRepo.findByEmailAndPassword(email,pwd);
         if (userlist.isEmpty()){
-
-            return "login";
+            return "loginfail.html";
         }
         else{
             User user = userlist.get(0);
