@@ -44,11 +44,17 @@ public class UserController {
     @PostMapping("user/adduser")
     public String addUser(@RequestParam Map<String, String> newuser, HttpServletResponse response){
         System.out.println("Add User");
+
+        String newEmail = newuser.get("email");
+        List<User> userlist = userRepo.findByEmail(newEmail);
+        if (!userlist.isEmpty()) {
+            return "user/addeduserFailed";
+        }
+
         String newFirst = newuser.get("first");
         String newLast = newuser.get("last");
         String newNick = newuser.get("nick");
         String newGender = newuser.get("gender");
-        String newEmail = newuser.get("email");
         String newPassword = newuser.get("password");            
         userRepo.save(new User(newFirst, newLast, newNick, newGender, newEmail, newPassword,0, "S", ""));
         response.setStatus(201);
@@ -59,11 +65,17 @@ public class UserController {
     @PostMapping("user/adduserLandlord")
     public String addUserLandlord(@RequestParam Map<String, String> newuser, HttpServletResponse response){
         System.out.println("Add User Landlord");
+
+        String newEmail = newuser.get("email");
+        List<User> userlist = userRepo.findByEmail(newEmail);
+        if (!userlist.isEmpty()) {
+            return "user/addeduserFailed";
+        }
+
         String newFirst = newuser.get("first");
         String newLast = newuser.get("last");
         String newNick = newuser.get("nick");
         String newGender = newuser.get("gender");
-        String newEmail = newuser.get("email");
         String newPassword = newuser.get("password");
         String newLandlordAddress = newuser.get("landlordAddress");            
         userRepo.save(new User(newFirst, newLast, newNick, newGender, newEmail, newPassword,0, "L", newLandlordAddress));
