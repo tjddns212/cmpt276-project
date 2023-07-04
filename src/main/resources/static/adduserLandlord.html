@@ -3,13 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/user.css" />
     <title>Document</title>
     <script src="/scripts/userLandlord.js" defer></script>
 </head>
-<body>
-    <head>Add New User</head>
+<body class = "mainframe">
+    <h1>RoomLink</h1>
+    <p>Hi Landlord,</p>
     <main>
-        <form action ="user/add" method = "post" onsubmit="return validateForm_adduser()">
+        <form action ="user/adduserLandlord" method = "post" onsubmit="return validateForm_adduser()">
             <div>
                 <input type="text" id="first" name = "first" placeholder="First Name">
             </div>
