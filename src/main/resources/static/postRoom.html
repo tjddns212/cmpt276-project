@@ -9,35 +9,36 @@
   </head>
   <body>
     <h1>Post My Room</h1>
+    <div class="box">
+      <form action="/rooms/add" method="post" enctype="multipart/form-data">
+        <!-- Room details form fields -->
+        <input type="text" id="title" name="title" placeholder="Title" />
+        <input type="text" id="address" name="address" placeholder="Address" />
+        <input type="text" id="city" name="city" placeholder="City" />
+        <input type="number" id="price" name="price" placeholder="Price" />
+        <textarea
+          name="description"
+          id="description"
+          placeholder="Description"
+        ></textarea>
+        <input
+          type="text"
+          id="startingDate"
+          name="startingDate"
+          placeholder="Starting Date"
+        />
+        <input
+          type="text"
+          id="endingDate"
+          name="endingDate"
+          placeholder="Ending Date"
+        />
 
-    <form action="/rooms/add" method="post" enctype="multipart/form-data">
-      <!-- Room details form fields -->
-      <input type="text" id="title" name="title" placeholder="Title" />
-      <input type="text" id="address" name="address" placeholder="Address" />
-      <input type="text" id="city" name="city" placeholder="City" />
-      <input type="number" id="price" name="price" placeholder="Price" />
-      <textarea
-        name="description"
-        id="description"
-        placeholder="Description"
-      ></textarea>
-      <input
-        type="text"
-        id="startingDate"
-        name="startingDate"
-        placeholder="Starting Date"
-      />
-      <input
-        type="text"
-        id="endingDate"
-        name="endingDate"
-        placeholder="Ending Date"
-      />
-
-      <!-- Image upload -->
-      <input type="file" name="image" />
-      <!-- submit button -->
-      <button type="submit">Submit</button>
-    </form>
+        <!-- Image upload -->
+        <input type="file" name="image" />
+        <!-- submit button -->
+        <button type="submit">Submit</button>
+      </form>
+    </div>
   </body>
 </html>
