@@ -1944,7 +1944,7 @@ article.special article {
 
 section.wrapper,
 article.wrapper {
-  padding: 6em 0;
+  padding: 3em 0;
 }
 
 section.wrapper header,
@@ -1955,7 +1955,6 @@ article.wrapper header {
 section.wrapper header h2,
 article.wrapper header h2 {
   font-size: 2.75em;
-  margin: 0 0 0.5em 0;
 }
 
 section.wrapper header p,
@@ -3215,4 +3214,7 @@ button:disabled,
   border-radius: 3px;
   width: 70px;
   text-align: center;
+}
+#title-faq {
+  margin-bottom: 50px;
 }
