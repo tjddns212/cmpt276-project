@@ -68,7 +68,7 @@ public class UserController {
         String newLandlordAddress = newuser.get("landlordAddress");            
         userRepo.save(new User(newFirst, newLast, newNick, newGender, newEmail, newPassword,0, "L", newLandlordAddress));
         response.setStatus(201);
-        response.sendRedirect("/login.html");
+        return "user/addedUser";
     }
 
     @GetMapping("/login")
