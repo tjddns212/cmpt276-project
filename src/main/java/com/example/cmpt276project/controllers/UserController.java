@@ -1,5 +1,6 @@
 package com.example.cmpt276project.controllers;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -40,7 +41,7 @@ public class UserController {
     // }
     
     @PostMapping("user/add")
-    public String addUser(@RequestParam Map<String, String> newuser, HttpServletResponse response){
+    public void addUser(@RequestParam Map<String, String> newuser, HttpServletResponse response) throws IOException{
         System.out.println("Add User");
         String newFirst = newuser.get("first");
         String newLast = newuser.get("last");
@@ -50,7 +51,7 @@ public class UserController {
         String newPassword = newuser.get("password");            
         userRepo.save(new User(newFirst, newLast, newNick, newGender, newEmail, newPassword,0));
         response.setStatus(201);
-        return "user/addedUser";
+        response.sendRedirect("/login.html");
     }
 
     @GetMapping("/login")
