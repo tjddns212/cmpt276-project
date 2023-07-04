@@ -79,12 +79,16 @@ public class UserController {
     @GetMapping("user/get")
     public String getUserByUid(@RequestParam Map<String, String> newuser, HttpServletResponse response, Model model) {
         System.out.println("Get User");
-        List<User> users = userRepo.findByUid(Integer.parseInt(newuser.get("uid")));
-        List<Room> rooms = roomRepo.findByUid(users.get(0).getRoom());
-        model.addAttribute("users", users);
-        model.addAttribute("rooms", rooms);
-        response.setStatus(201);
-        return "user/Profile";
+        try {
+            List<User> users = userRepo.findByUid(Integer.parseInt(newuser.get("uid")));
+            List<Room> rooms = roomRepo.findByUid(users.get(0).getRoom());
+            model.addAttribute("users", users);
+            model.addAttribute("rooms", rooms);
+            response.setStatus(201);
+            return "user/Profile";
+        } catch (Exception e) {
+            return "user/DNE";
+        }
     }
 
     @PostMapping("user/edit")
