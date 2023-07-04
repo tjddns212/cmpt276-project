@@ -1,5 +1,6 @@
 package com.example.cmpt276project.controllers;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -67,7 +68,7 @@ public class UserController {
         String newLandlordAddress = newuser.get("landlordAddress");            
         userRepo.save(new User(newFirst, newLast, newNick, newGender, newEmail, newPassword,0, "L", newLandlordAddress));
         response.setStatus(201);
-        return "user/addedUser";
+        response.sendRedirect("/login.html");
     }
 
     @GetMapping("/login")
