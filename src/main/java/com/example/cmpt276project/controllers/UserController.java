@@ -90,13 +90,20 @@ public class UserController {
     @PostMapping("user/edit")
     public String editUserByUid(@RequestParam Map<String, String> newuser, HttpServletResponse response) {
         List<User> users = userRepo.findByUid(Integer.parseInt(newuser.get("uid")));
+        List<User> all = userRepo.findAll();
         User user = users.get(0);
         user.setFirst(newuser.get("first"));
         user.setLast(newuser.get("last"));
         user.setNick(newuser.get("nick"));
         user.setGender(newuser.get("gender"));
-        user.setEmail(newuser.get("email"));
         user.setPassword(newuser.get("password"));
+        for (int i = 0; i < all.size(); i ++) {
+            if (newuser.get("email").equals(all.get(i).getEmail())) {
+                userRepo.save(user);
+                return "user/emailUsed";
+            }
+        }
+        user.setEmail(newuser.get("email"));
         userRepo.save(user);
 //=======
 
