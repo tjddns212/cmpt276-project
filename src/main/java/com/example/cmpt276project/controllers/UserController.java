@@ -52,7 +52,7 @@ public class UserController {
         String newPassword = newuser.get("password");            
         userRepo.save(new User(newFirst, newLast, newNick, newGender, newEmail, newPassword,0, "S", ""));
         response.setStatus(201);
-        return "user/addedUser.html";
+        return "user/addeduser";
     }
 
     // Add user landlord
@@ -68,7 +68,7 @@ public class UserController {
         String newLandlordAddress = newuser.get("landlordAddress");            
         userRepo.save(new User(newFirst, newLast, newNick, newGender, newEmail, newPassword,0, "L", newLandlordAddress));
         response.setStatus(201);
-        return "user/addedUser.html";
+        return "user/addeduser";
     }
 
     @GetMapping("/login")
