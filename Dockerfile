@@ -4,6 +4,6 @@ RUN mvn clean package -DskipTests
 
 
 FROM openjdk:17-jdk-slim
-COPY --from=build /target/cmpt276project-0.0.1-SNAPSHOT.jar cmpt276project.jar
+COPY --from=build /target/cmpt276-project-0.0.1-SNAPSHOT.jar cmpt276-project.jar
 EXPOSE 8080
-ENTRYPOINT ["java","-jar","cmpt276project.jar"]
+ENTRYPOINT ["java","-jar","cmpt276-project.jar"]
