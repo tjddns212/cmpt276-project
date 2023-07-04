@@ -9,5 +9,4 @@ public class Cmpt276ProjectApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(Cmpt276ProjectApplication.class, args);
 	}
-
 }

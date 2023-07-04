@@ -29,6 +29,16 @@ public class UserController {
     @Autowired
     public RoomRepository roomRepo;
     
+    // @GetMapping("/user/add")
+    // public String addUser(){
+    //     String email = formData.get("email");
+    //     List<User> userlist = userRepo.findByEmail(email);
+    //     if (userlist.isEmpty()){
+
+    //         return "login";
+    //     }
+    // }
+    
     @PostMapping("user/add")
     public String addUser(@RequestParam Map<String, String> newuser, HttpServletResponse response){
         System.out.println("Add User");
@@ -42,6 +52,7 @@ public class UserController {
         response.setStatus(201);
         return "user/addedUser";
     }
+
     @GetMapping("/login")
     public String getLogin(Model model, HttpServletRequest request, HttpSession session){
         User user = (User) session.getAttribute("session_user");
@@ -59,6 +70,7 @@ public class UserController {
         String pwd = formData.get("password");
         List<User> userlist = userRepo.findByEmailAndPassword(email,pwd);
         if (userlist.isEmpty()){
+
             return "login";
         }
         else{
