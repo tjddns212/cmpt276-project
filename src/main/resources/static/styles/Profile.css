@@ -1,0 +1,38 @@
+html, input {
+    font-size: 32px;
+}
+
+header {
+    color: #CC00CC;
+}
+
+h1 {
+    color: orangered;
+    text-align: center;
+}
+
+input {
+    color: #888888;
+}
+
+button {
+    background-color: #0d6efd;
+    color: white;
+    border: 0px;
+    border-radius: 20px;
+    height: 40px;
+    font-size: 20px;
+}
+
+/* table, td {
+    border: 1px solid black;
+} */
+
+
+.avatar {
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}

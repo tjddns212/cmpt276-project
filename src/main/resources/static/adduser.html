@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="/scripts/user.js" defer></script>
+</head>
+<body>
+    <head>Add New User</head>
+    <main>
+    <form action ="user/add" method = "post" onsubmit="return validateForm_adduser()">
+    <div>
+        <input type="text" id="first" name = "first" placeholder="First Name">
+    </div>
+    <div>
+        <input type="text" id="last" name = "last" placeholder="Last Name">
+    </div>
+    <div>
+        <input type="text" id="nick" name = "nick" placeholder="Nickname">
+    </div>
+    <div>
+        <input type="text" id="gender" name = "gender" placeholder="Gender (M/F)">
+    </div>
+    <div>
+        <input type="text" id="email" name = "email" placeholder="Email as Logon ID">
+    </div>
+    <div>
+        <input type="text" id="password" name = "password" placeholder="Password">
+    </div>
+        <div>
+            <input class="btn btn-primary" type="submit" value="Create"></form>
+        </div>
+    </form>
+    </main>
+</body>
+</html>
