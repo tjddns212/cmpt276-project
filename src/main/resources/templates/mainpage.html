@@ -7,6 +7,19 @@
     <title>Document</title>
 </head>
 <body class ="mainframe">
+
+    <header>
+
+        <form action = "user/get" method = "get">
+            <div th:each = "u:${user}" style = "position: absolute; right: 0px; top: 0px;">
+                <input th:value = "${u.uid}" name = "uid" id = "uid" style = "visibility: hidden;">
+                <button type = "submit"><img style = "width: 60px; height: 60px;" th:src = "@{/images/illustration-of-human-icon-user-symbol-icon-modern-design-on-blank-background-free-vector.jpg}"></button>
+            </div>
+        </form>
+
+    </header>
+
+
     <h1>RoomLink</h1><a href = "/logout"> Logout</a>
     <br>
     <br>
