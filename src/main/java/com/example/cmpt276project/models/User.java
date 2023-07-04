@@ -15,7 +15,6 @@ public class User {
 	private String email;
 	private String password;
 	private int room; // it stores the room id of the user because it is hard to store a whole room in the user table
-	private String role; // either "landlord" or "student"
 
 	public User() {}
 
@@ -91,14 +90,6 @@ public class User {
 
 	public void setRoom(int room) {
 		this.room = room;
-	}
-
-	public String getRole() {
-		return role;
-	}
-
-	public void setRole(String role) {
-		this.role = role;
 	}
 
 }
