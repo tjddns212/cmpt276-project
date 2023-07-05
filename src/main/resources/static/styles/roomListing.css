@@ -61,3 +61,12 @@ h4 {
 p {
   font-size: 1.1rem;
 }
+
+.logo {
+  cursor: pointer;
+}
+
+.logo > a {
+  text-decoration: none;
+  color: inherit;
+}

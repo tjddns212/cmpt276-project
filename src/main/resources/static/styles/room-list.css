@@ -223,3 +223,8 @@ html {
 .filter-buttons button:hover {
   background-color: #f7d46a;
 }
+
+.logo > a {
+  text-decoration: none;
+  color: inherit;
+}
