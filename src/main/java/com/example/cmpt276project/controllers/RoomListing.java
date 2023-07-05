@@ -17,7 +17,7 @@ public class RoomListing {
     public String getRoomListing(Model model, @PathVariable Integer id){
         Room roomListing = roomsRepo.findById(id).get();
         model.addAttribute("roomListing", roomListing);
-        return "/rooms/roomListing";
+        return "rooms/roomListing";
     }
 
 }
