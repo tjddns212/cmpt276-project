@@ -106,7 +106,7 @@ public class UserController {
             User user = userlist.get(0);
             request.getSession().setAttribute("session_user", user);
             model.addAttribute("user", user);
-            return "index.html";
+            return "redirect:/index.html";
         }
         
     }
