@@ -1,4 +1,4 @@
-@charset "UTF-8";
+@charse "UTF-8";
 @import "https://fonts.googleapis.com/css?family=Raleway:100,300,600";
 
 html,
@@ -13,7 +13,6 @@ h2,
 h3,
 h4,
 h5,
-h6,
 p,
 blockquote,
 pre,
@@ -1810,8 +1809,7 @@ h1,
 h2,
 h3,
 h4,
-h5,
-h6 {
+h5 {
   color: #5385c1;
   font-weight: 300;
   line-height: 1.5;
@@ -1822,8 +1820,7 @@ h1 a,
 h2 a,
 h3 a,
 h4 a,
-h5 a,
-h6 a {
+h5 a {
   color: inherit;
   text-decoration: none;
 }
@@ -1846,6 +1843,12 @@ h5 {
 
 h6 {
   font-size: 0.7em;
+  padding: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  margin: 1rem 0 24px 0 !important;
+  font-weight: 500;
 }
 
 sub {
@@ -2172,7 +2175,7 @@ header h6 + p {
 }
 
 .flex.flex-4 .box {
-  width: 21%;
+  width: 24%;
 }
 
 @media screen and (max-width: 980px) {
@@ -2441,21 +2444,12 @@ input[type="radio"] + label:before {
 
 .box.person {
   border: solid 1px rgba(255, 255, 255, 0.25);
-  padding: 3em 1.5em;
+  width: 10em;
 }
 
 .box.person h3 {
   margin: 0;
 }
-
-.box.person .image {
-  margin-bottom: 1em;
-}
-
-.box.person .image img {
-  max-width: 100%;
-}
-
 /* Icon */
 
 .icon {
@@ -2794,7 +2788,6 @@ button,
   background-color: #5a5a5a;
   border-radius: 0;
   border: 0;
-  color: #ffffff !important;
   cursor: pointer;
   display: inline-block;
   font-weight: 600;
@@ -3170,6 +3163,9 @@ button:disabled,
   color: #bbb;
   text-decoration: none;
 }
+.footer-copyright.text-center.py-3 {
+  padding-top: 0;
+}
 
 #footer .copyright a:hover {
   color: #bbb;
@@ -3218,4 +3214,56 @@ button:disabled,
 }
 #title-faq {
   margin-bottom: 50px;
+}
+.hover-effect1 {
+  min-height: 20px;
+  background: #5385c1;
+  text-align: center;
+}
+.hover-effect1 ul {
+  padding-top: 1px;
+}
+.hover-effect1 ul li {
+  display: inline-block;
+}
+.hover-effect1 ul li a {
+  width: 30px;
+  height: 30px;
+  font-size: 30px;
+  text-align: center;
+  color: #fff;
+  line-height: 50px;
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  background: #5385c1;
+  -webkit-transition: all 0.6s ease;
+  -moz-transition: all 0.6s ease;
+  -ms-transition: all 0.6s ease;
+  -o-transition: all 0.6s ease;
+  transition: all 0.6s ease;
+}
+.hover-effect1 ul li:hover a {
+  border-radius: 50%;
+  background: #5385c1;
+  -moz-transform: rotate(360deg);
+  -webkit-transform: rotate(360deg);
+  -o-transform: rotate(360deg);
+  -ms-transform: rotate(360deg);
+  transform: rotate(360deg);
+}
+#two {
+  height: 600px;
+  padding: 30px 0;
+}
+#link10 a {
+  color: black;
+  text-decoration: none;
+}
+#log-in.btn.btn-login {
+  padding: 0;
+}
+img {
+  width: 4rem;
+  height: 4rem;
 }

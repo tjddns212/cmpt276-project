@@ -62,7 +62,7 @@ public class UserController {
         }
         else {
             model.addAttribute("user",user);
-            return "mainpage";
+            return "index.html";
         }
     }
     @PostMapping("/login")
@@ -78,7 +78,7 @@ public class UserController {
             User user = userlist.get(0);
             request.getSession().setAttribute("session_user", user);
             model.addAttribute("user", user);
-            return "mainpage.html";
+            return "index.html";
         }
         
     }
