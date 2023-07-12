@@ -3165,9 +3165,6 @@ button:disabled,
   color: #bbb;
   text-decoration: none;
 }
-.footer-copyright.text-center.py-3 {
-  padding-top: 0;
-}
 
 #footer .copyright a:hover {
   color: #bbb;
@@ -3176,6 +3173,9 @@ button:disabled,
 
 #footer ul.icons li .icon {
   font-size: 0.58em;
+}
+#footer ul {
+  margin-top: 20px;
 }
 
 @media screen and (max-width: 736px) {
@@ -3279,4 +3279,10 @@ img {
 }
 a.button {
   border-radius: 6px;
+}
+#col-md-4 {
+  text-align: center;
+}
+.row img {
+  margin: 20px 0 40px 0;
 }
