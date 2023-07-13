@@ -97,4 +97,12 @@ public class Room {
     this.city = city;
   }
 
+  public Image getImage() {
+    return image;
+  }
+
+  public void setImage(Image image) {
+    this.image = image;
+  }
+
 }

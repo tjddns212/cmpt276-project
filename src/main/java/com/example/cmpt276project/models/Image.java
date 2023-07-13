@@ -1,5 +1,7 @@
 package com.example.cmpt276project.models;
 
+import java.util.Base64;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -11,7 +13,7 @@ public class Image {
     private int uid;
     private String name;
     private String type;
-    @Column(name = "image", length = 100000)
+    @Column(name = "image", length = 5000000)
     private byte[] image;
 
     public Image() {
@@ -46,6 +48,10 @@ public class Image {
 
     public void setImage(byte[] image) {
         this.image = image;
+    }
+
+    public String encodeBytesToString() {
+        return Base64.getEncoder().encodeToString(this.getImage());
     }
 
 }
