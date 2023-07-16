@@ -1,0 +1,84 @@
+body {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+  background-color: #336fd7;
+  gap: 2.5rem;
+  min-height: 100vh;
+}
+
+h1 > a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+}
+
+legend {
+  color: black;
+  font-size: 2rem;
+  font-weight: 500;
+  text-align: center;
+  font-family: "Montserrat", sans-serif;
+}
+
+label {
+  color: black;
+}
+form {
+  display: flex;
+}
+fieldset {
+  background-color: white;
+  display: flex;
+  flex-flow: column nowrap;
+  border-radius: 5px;
+  padding: 2rem 4rem;
+  width: 100%;
+  gap: 2rem;
+  box-shadow: rgba(243, 243, 243, 0.25) 0px 13px 27px -5px,
+    rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
+
+.form-info-container input {
+  border-radius: 5px;
+  width: 100%;
+  border: none;
+  padding: 0.5rem;
+  box-shadow: 5px 5px 10px rgb(200, 199, 199);
+}
+
+input[type="submit"] {
+  border: none;
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 10px;
+  color: white;
+  background-color: #2788ff;
+  font-weight: 600;
+  font-family: "Montserrat", sans-serif;
+}
+
+p > a {
+  font-family: "Poppins", sans-serif;
+  font-weight: bold;
+  text-decoration: underline;
+  color: #336fd7;
+}
+
+fieldset > p {
+  font-weight: 500;
+  font-family: "Poppins", sans-serif;
+}
+
+.form-info-container {
+  width: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 0.5rem;
+}
+
+.form-info-container label {
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.9rem;
+}
