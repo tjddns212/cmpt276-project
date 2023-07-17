@@ -1,19 +1,31 @@
 /* Room Cards */
 @import url("https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap");
-html {
+html,
+body {
   background-color: #f8f8f8;
+  margin: 0;
+  padding: 0;
 }
-.logo {
-  font-family: "Arial", sans-serif;
-  font-weight: bold;
-  font-size: 28px;
-  color: #333333;
+.inner {
+  background-color: #011d77;
+  display: flex;
+  justify-content: space-between;
+  height: 8rem;
+  margin-bottom: 60px;
+  align-items: center;
 }
-
-.logo::before {
-  content: "R";
-  font-size: 40px;
-  color: #2272c8;
+nav a {
+  text-decoration: none;
+  color: white;
+  font-family: sans-serif, serif;
+  margin-right: 25px;
+}
+nav > :nth-child(-n + 4) {
+  font-size: 1.3rem;
+}
+#sign-up,
+#log-in {
+  font-size: 0.8rem;
 }
 .container-header {
   display: flex;
@@ -21,100 +33,9 @@ html {
   align-items: center;
   height: 50px;
 }
-.action {
-  position: fixed;
-  top: 20px;
-  right: 30px;
-}
-
-.action .profile {
-  position: relative;
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  overflow: hidden;
-  cursor: pointer;
-}
-
-.action .profile img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.action .menu {
-  position: absolute;
-  top: 120px;
-  right: -10px;
-  padding: 10px 20px;
-  background: #fff;
-  width: 200px;
-  box-sizing: 0 5px 25px rgba(0, 0, 0, 0.1);
-  border-radius: 15px;
-  transition: 0.5s;
-  visibility: hidden;
-  opacity: 0;
-}
-
-.action .menu.active {
-  top: 80px;
-  visibility: visible;
-  opacity: 1;
-}
-
-.action .menu::before {
-  content: "";
-  position: absolute;
-  top: -5px;
-  right: 28px;
-  width: 20px;
-  height: 20px;
-  background: #fff;
-  transform: rotate(45deg);
-}
-
-.action .menu h3 {
-  width: 100%;
-  text-align: center;
-  font-size: 18px;
-  padding: 20px 0;
-  font-weight: 500;
-  color: #555;
-  line-height: 1.5em;
-}
-
-.action .menu h3 span {
-  font-size: 14px;
-  color: #cecece;
-  font-weight: 300;
-}
-
-.action .menu ul li {
-  list-style: none;
-  padding: 16px 0;
-  border-top: 1px solid rgba(0, 0, 0, 0.05);
-  display: flex;
-  align-items: center;
-}
-
-.action .menu ul li a {
-  display: inline-block;
-  text-decoration: none;
-  color: #555;
-  font-weight: 500;
-  transition: 0.5s;
-  text-align: center;
-}
-
-.action .menu ul li:hover a {
-  color: #ff5d94;
-}
 
 .title h1 {
-  margin: 18px 0 18px 0;
+  margin: 20px 0 20px 0;
   text-align: center;
   font-size: 50px;
   text-transform: uppercase;
@@ -196,7 +117,7 @@ html {
 
 /* Filter Buttons */
 .filter-buttons {
-  margin-bottom: 20px;
+  margin: 0 0 20px 20px;
 }
 .w-btn {
   position: relative;
@@ -222,4 +143,9 @@ html {
 
 .filter-buttons button:hover {
   background-color: #f7d46a;
+}
+
+.logo > a {
+  text-decoration: none;
+  color: inherit;
 }

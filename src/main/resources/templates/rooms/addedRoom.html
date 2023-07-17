@@ -8,5 +8,11 @@
   </head>
   <body>
     Success
+    <div th:if="${room != null}">
+      <img
+        th:src="@{'data:image/jpeg;base64,' + ${room.image.encodeBytesToString()}}"
+        alt="Room Image"
+      />
+    </div>
   </body>
 </html>

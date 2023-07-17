@@ -24,6 +24,7 @@ public class User {
 	private int room; // it stores the room id of the user because it is hard to store a whole room in the user table
 	private String accountType;
 	private String landlordAddress;
+	private int avatar; // it stores the uid of user's avatar in images table
 
 	public User() {}
 
@@ -119,5 +120,13 @@ public class User {
 
 	public void setAccountType(String accountType) {
 		this.accountType = accountType;
+	}
+
+	public int getAvatar() {
+		return avatar;
+	}
+
+	public void setAvatar(int avatar) {
+		this.avatar = avatar;
 	}
 }

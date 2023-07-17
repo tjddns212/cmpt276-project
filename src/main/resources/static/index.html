@@ -6,21 +6,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./styles/index.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" href="./styles/auth.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
-    <script src="./scripts/index.js" defer></script>
- 
+    <script src="./scripts/auth.js" defer></script>
+    <script src="https://kit.fontawesome.com/7fae839089.js" crossorigin="anonymous"></script>
     <title>Post My Room</title>
   </head>
   <body>
     <!-- Header -->
     <header id="header">
       <div class="inner">
-        <a href="index.html" class="logo">RoomLink</a>
+        <a href="index.html" class="logo"><img src="./images/roomlink_logo.png" alt="logo"></a>
         <nav id="nav">
           <a href="/rooms/view">LISTINGS</a>
           <a href="#">FIND MY ROOMATE</a>
-          <a href="#">COMMUNITY</a>
+          <a href="/community.html">COMMUNITY</a>
           <a href="#">FAQ</a>
+          <div class="action">
+            <div class="profile" onclick="menuToggle();">
+              <img src="/images/illustration-of-human-icon-user-symbol-icon-modern-design-on-blank-background-free-vector.jpg" />
+            </div>
+            <div class="menu">
+              <h3>name<br />
+              <ul>
+                <li>
+                  <a href="#">My profile</a>
+                </li>
+                <li>
+                <a href="/logout">Logout</a>
+                </li>
+              </ul>
+            </div>
+          </div>
           <a href="/chooseuser.html" id="sign-up" class="btn btn-signup">Sign Up</a>
           <a href="/login" id="log-in" class="btn btn-login" git>Login</a>
         </nav>
@@ -29,14 +46,14 @@
 
     <!-- Banner -->
     <section id="banner">
-      <h1>Create Lasting Memories in Shared Homes</h1>
+      <h1>Discover the Ultimate Student Living Experience</h1>
       <p>Connect, Share, and Thrive with ShareSpace</p>
       <div class="search-box">
-        <span class="search-icon"><i class="fas fa-search"></i></span>
+        <!-- <span class="search-icon"><i class="fas fa-search"></i></span> -->
         <input
           type="text"
           id="location-input"
-          placeholder="Search by location"
+          placeholder= "Search by location"
         />
       </div>
       <div class="buttons">
@@ -57,6 +74,7 @@
               Explore a wide range of available rooms to rent and find your
               ideal living space that suits your needs and preferences.
             </p>
+            <br>
             <footer>
               <a href="/rooms/view" class="button special">More</a>
             </footer>
@@ -69,6 +87,7 @@
               Find compatible roommates who share your interests, lifestyle, and
               values, creating a harmonious and enjoyable living environment.
             </p>
+            <br>
             <footer>
               <a href="#" class="button special">More</a>
             </footer>
@@ -136,7 +155,7 @@
       </h2>
       <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
         <div class="accordion-body">
-          <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+          It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
         </div>
       </div>
     </div>
@@ -148,7 +167,7 @@
       </h2>
       <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
         <div class="accordion-body">
-          <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+          It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
         </div>
       </div>
     </div>
@@ -160,49 +179,62 @@
       </h2>
       <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
         <div class="accordion-body">
-          <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+           It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
         </div>
       </div>
     </div>
   </div>
 </section>
-    <!-- Footer -->
-    <footer id="footer">
-      <div class="inner">
-        <div class="flex">
-          <ul class="icons">
-            <li>
-              <a href="#" class="icon fa-facebook"
-                ><span class="label">Facebook</span></a
-              >
-            </li>
-            <li>
-              <a href="#" class="icon fa-twitter"
-                ><span class="label">Twitter</span></a
-              >
-            </li>
-            <li>
-              <a href="#" class="icon fa-linkedin"
-                ><span class="label">linkedIn</span></a
-              >
-            </li>
-            <li>
-              <a href="#" class="icon fa-pinterest-p"
-                ><span class="label">Pinterest</span></a
-              >
-            </li>
-            <li>
-              <a href="#" class="icon fa-vimeo"
-                ><span class="label">Vimeo</span></a
-              >
-            </li>
-          </ul>
+    <footer id="Footer"style="background-color:#b3b3cc;" class="page-footer font-small stylish-color-dark pt-4">
+      <div style="background-color:#b3b3cc;" class="container text-center text-md-left">
+        <div class="row">
+          <div class="col-md-4 mx-auto">
+            <!-- Content -->
+            <img src="./images/roomlink_logo.png" alt="logo">
+            <div class="hover-effect1">
+              <ul  style="background-color:#b3b3cc;" class="list-unstyled list-inline text-center">
+                <li class="list-inline-item">
+                  <a href="https://www.facebook.com/codewithfaraz" title="Facebook"><i class="fa fa-facebook"></i></a>
+                </li>
+                <li class="list-inline-item">
+                  <a href="https://www.instagram.com/codewithfaraz" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                </li>
+                <li class="list-inline-item">
+                  <a href="https://www.youtube.com/@codewithfaraz" title="Youtube"><i class="fa fa-youtube"></i></a>
+                </li>
+                <li class="list-inline-item">
+                  <a href="#." title="Twitter"><i class="fa fa-twitter"></i></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <hr class="clearfix w-100 d-md-none">
+          <div id="link10" class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+            <h6 class="text-uppercase font-weight-bold">Quick links</h6>
+            <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 70px;">
+            <p>
+              <a href="/rooms/view">LISTINGS</a>
+            </p>
+            <p>
+              <a href="#">FIND MY ROOMATE</a>
+            </p>
+            <p>
+              <a href="#">COMMUNITY</a>
+            </p>
+            <p>
+              <a href="#">FAQ</a>
+            </p>
+          </div>
+          <hr class="clearfix w-100 d-md-none">
+          <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+            <h6 class="text-uppercase font-weight-bold">Contact</h6>
+            <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+            <p>
+              <i class="fas fa-envelope mr-3"></i> notdecidedyet@gmail.com</p>
+            <p>
+              <i class="fas fa-phone mr-3"></i> + 91 80254 52xxx</p>
+          </div>
         </div>
       </div>
-    </footer>
-
-    <div class="copyright">
-      Site made with: <a href="https://templated.co/">TEMPLATED.CO</a>
-    </div>
   </body>
 </html>

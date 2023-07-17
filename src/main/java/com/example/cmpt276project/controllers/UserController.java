@@ -1,6 +1,7 @@
 package com.example.cmpt276project.controllers;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.cmpt276project.models.User;
 import com.example.cmpt276project.models.UserRepository;
@@ -91,7 +93,7 @@ public class UserController {
         }
         else {
             model.addAttribute("user",user);
-            return "mainpage";
+            return "index.html";
         }
     }
     @PostMapping("/login")
@@ -106,14 +108,22 @@ public class UserController {
             User user = userlist.get(0);
             request.getSession().setAttribute("session_user", user);
             model.addAttribute("user", user);
-            return "mainpage.html";
+            return "redirect:/index.html";
         }
-        
     }
+    @GetMapping("/checkLoginStatus")
+    @ResponseBody
+    public Map<String, Boolean> checkLoginStatus(HttpSession session) {
+    Map<String, Boolean> response = new HashMap<>();
+    User user = (User) session.getAttribute("session_user");
+     response.put("loggedIn", user != null);
+    return response;
+}
+
     @GetMapping("/logout")
     public String destroySession(HttpServletRequest request){
         request.getSession().invalidate();
-        return "login";
+        return "redirect:/index.html";
     }
 //<<<<<<< Updated upstream
     
