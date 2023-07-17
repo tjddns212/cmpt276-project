@@ -1,6 +1,5 @@
 package com.example.cmpt276project.controllers;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -26,21 +24,14 @@ import jakarta.servlet.http.HttpSession;
 @Controller
 public class UserController {
     
-    @Autowired
-    public UserRepository userRepo;
+    private final UserRepository userRepo;
+    private final RoomRepository roomRepo;
 
     @Autowired
-    public RoomRepository roomRepo;
-    
-    // @GetMapping("/user/add")
-    // public String addUser(){
-    //     String email = formData.get("email");
-    //     List<User> userlist = userRepo.findByEmail(email);
-    //     if (userlist.isEmpty()){
-
-    //         return "login";
-    //     }
-    // }
+    public UserController(UserRepository userRepo, RoomRepository roomRepo) {
+        this.userRepo = userRepo;
+        this.roomRepo = roomRepo;
+    }
     
     // Add user
     @PostMapping("user/adduser")
@@ -58,7 +49,7 @@ public class UserController {
         String newNick = newuser.get("nick");
         String newGender = newuser.get("gender");
         String newPassword = newuser.get("password");            
-        userRepo.save(new User(newFirst, newLast, newNick, newGender, newEmail, newPassword,0, "S", ""));
+        userRepo.save(new User(newFirst, newLast, newNick, newGender, newEmail, newPassword, 0, "Student"));
         response.setStatus(201);
         return "user/addeduser";
     }
@@ -78,9 +69,8 @@ public class UserController {
         String newLast = newuser.get("last");
         String newNick = newuser.get("nick");
         String newGender = newuser.get("gender");
-        String newPassword = newuser.get("password");
-        String newLandlordAddress = newuser.get("landlordAddress");            
-        userRepo.save(new User(newFirst, newLast, newNick, newGender, newEmail, newPassword,0, "L", newLandlordAddress));
+        String newPassword = newuser.get("password");           
+        userRepo.save(new User(newFirst, newLast, newNick, newGender, newEmail, newPassword,0, "Landlord"));
         response.setStatus(201);
         return "user/addeduser";
     }
@@ -96,6 +86,7 @@ public class UserController {
             return "index.html";
         }
     }
+
     @PostMapping("/login")
     public String login(@RequestParam Map<String, String> formData, Model model, HttpServletRequest request, HttpSession session){
         String email = formData.get("email");
@@ -111,21 +102,21 @@ public class UserController {
             return "redirect:/index.html";
         }
     }
+
     @GetMapping("/checkLoginStatus")
     @ResponseBody
     public Map<String, Boolean> checkLoginStatus(HttpSession session) {
-    Map<String, Boolean> response = new HashMap<>();
-    User user = (User) session.getAttribute("session_user");
-     response.put("loggedIn", user != null);
-    return response;
-}
+        Map<String, Boolean> response = new HashMap<>();
+        User user = (User) session.getAttribute("session_user");
+        response.put("loggedIn", user != null);
+        return response;
+    }
 
     @GetMapping("/logout")
     public String destroySession(HttpServletRequest request){
         request.getSession().invalidate();
         return "redirect:/index.html";
     }
-//<<<<<<< Updated upstream
     
     @GetMapping("user/get")
     public String getUserByUid(@RequestParam Map<String, String> newuser, HttpServletResponse response, Model model) {
@@ -149,10 +140,6 @@ public class UserController {
         user.setEmail(newuser.get("email"));
         user.setPassword(newuser.get("password"));
         userRepo.save(user);
-//=======
-
-    
-//>>>>>>> Stashed changes
 
         if (user.getRoom() != 0) {
             List<Room> rooms = roomRepo.findByUid(user.getRoom());
