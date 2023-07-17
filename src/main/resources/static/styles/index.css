@@ -2992,7 +2992,7 @@ button:disabled,
   font-size: 1em;
 }
 
-#header a {
+#header nav a {
   -moz-transition: color 0.2s ease-in-out;
   -webkit-transition: color 0.2s ease-in-out;
   -ms-transition: color 0.2s ease-in-out;

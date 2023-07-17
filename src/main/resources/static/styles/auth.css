@@ -19,9 +19,9 @@
   position: absolute;
   top: 120px;
   right: -10px;
-  padding: 10px 20px;
+  padding: 5px 10px;
   background: #fff;
-  width: 200px;
+  width: 150px;
   box-sizing: 0 5px 25px rgba(0, 0, 0, 0.1);
   border-radius: 15px;
   transition: 0.5s;
@@ -50,10 +50,15 @@
   width: 100%;
   text-align: center;
   font-size: 18px;
-  padding: 20px 0;
+  padding: 10px 0;
   font-weight: 500;
   color: #555;
   line-height: 1.5em;
+  margin: 0;
+}
+.active ul {
+  padding: 0;
+  margin: 0;
 }
 
 .action .menu h3 span {
@@ -64,7 +69,7 @@
 
 .action .menu ul li {
   list-style: none;
-  padding: 16px 0;
+  padding: 10px 0;
   border-top: 1px solid rgba(0, 0, 0, 0.05);
   display: flex;
   align-items: center;
@@ -77,8 +82,11 @@
   font-weight: 500;
   transition: 0.5s;
   text-align: center;
+  margin: 0 auto;
 }
-
+h3 a {
+  padding: 0 !important;
+}
 .action .menu ul li:hover a {
   color: #ff5d94;
 }
