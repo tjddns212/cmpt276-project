@@ -2,6 +2,7 @@ package com.example.cmpt276project.controllers;
 
 import java.util.List;
 import java.util.Map;
+import java.io.IOException;
 import java.util.Base64;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,7 @@ public class ImageController {
     public ImageRepository imageRepo;
 
     @PostMapping("/upload")
-    public String uploadImage(@RequestParam("file") MultipartFile file) {
+    public String uploadImage(@RequestParam("file") MultipartFile file) throws IOException {
         byte[] imageData = file.getBytes();
         String fileName = file.getOriginalFilename();
         String fileType = file.getContentType();

@@ -3,7 +3,7 @@ body {
   flex-flow: column nowrap;
   align-items: center;
   justify-content: center;
-  background-color: #336fd7;
+  background-color: #1d5d9b;
   gap: 2.5rem;
   min-height: 100vh;
 }
