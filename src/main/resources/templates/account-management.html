@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Account Management</title>
+</head>
+<body>
+    <h1>Account Management</h1>
+
+    <table>
+        <tr>
+            <th>User ID</th>
+            <th>Account Type</th>
+            <th>Email</th>
+            <th>Password</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Nickname</th>
+        </tr>
+        <tr th:each="u: ${users}">
+            <td th:text="${u.uid}"></td>
+            <td th:text="${u.accountType}"></td>
+            <td th:text="${u.email}"></td>
+            <td th:text="${u.password}"></td>
+            <td th:text="${u.first}"></td>
+            <td th:text="${u.last}"></td>
+            <td th:text="${u.nick}"></td>
+        </tr>
+    </table>
+</body>
