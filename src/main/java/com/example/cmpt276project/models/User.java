@@ -6,12 +6,6 @@ import jakarta.persistence.*;
 @Table(name = "users")
 public class User {
 
-	// Account Type
-	public enum AccountType {
-		STUDENT,
-		LANDLORD
-	}
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int uid;
@@ -23,12 +17,11 @@ public class User {
 	private String password;
 	private int room; // it stores the room id of the user because it is hard to store a whole room in the user table
 	private String accountType;
-	private String landlordAddress;
 	private int avatar; // it stores the uid of user's avatar in images table
 
 	public User() {}
 
-	public User(String first, String last, String nick, String gender, String email, String password, int room, String accountType, String landlordAddress) {
+	public User(String first, String last, String nick, String gender, String email, String password, int room, String accountType) {
 		this.first = first;
 		this.last = last;
 		this.nick = nick;
@@ -37,7 +30,6 @@ public class User {
 		this.password = password;
 		this.room = room;
 		this.accountType = accountType;
-		this.landlordAddress = landlordAddress;
 	}
 
 	public int getUid() {
@@ -106,16 +98,6 @@ public class User {
 
 	public String getAccountType() {
 		return accountType;
-	}
-
-
-
-	public String getLandlordAddress() {
-		return landlordAddress;
-	}
-
-	public void setLandlordAddress(String landlordAddress) {
-		this.landlordAddress = landlordAddress;
 	}
 
 	public void setAccountType(String accountType) {
