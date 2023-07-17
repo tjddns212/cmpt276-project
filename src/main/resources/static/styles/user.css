@@ -1,17 +1,37 @@
+html,
+body {
+  height: 100%;
+}
+body {
+  width: 100%;
+}
+.inner {
+  margin: 50px 30px;
+}
 .mainframe {
+  float: left;
+  background-color: rgb(223, 247, 246);
+  color: blue;
+  padding: 10px;
+  margin: 4px;
+}
 
-    float: left;
-    width: 400px;
-    background-color: rgb(223, 247, 246);
-    color: blue;
-    height : 400px;
-    padding : 10px;
-    margin: 4px;
-
-  }
-
-  h1 {
-    color:brown;
-    font-size: 14pt;
-    font-family: 'Times New Roman', Times, serif;
-  }
+h1 {
+  color: brown;
+  font-size: 14pt;
+  font-family: "Times New Roman", Times, serif;
+}
+.title-container {
+  width: 100%;
+  text-align: center;
+}
+.title-container p {
+  font-family: sans-serif;
+  font-size: 40px;
+  color: midnightblue;
+  font-weight: 800;
+}
+.container {
+  display: flex;
+  justify-content: center;
+}
