@@ -1,6 +1,5 @@
 let isLoggedIn;
 
-//const postButton = document.getElementsByClassName("post-button")[0];
 const action = document.querySelector(".action");
 const signUpButton = document.querySelector("#sign-up");
 const logInButton = document.querySelector("#log-in");
@@ -11,22 +10,6 @@ function menuToggle() {
   toggleMenu.classList.toggle("active");
 }
 
-// postButton.addEventListener("click", function (event) {
-//   if (!isLoggedIn) {
-//     event.preventDefault(); // Prevent the default link behavior
-
-//     window.location.href = "login"; // Redirect to the login page
-//   }
-// });
-// const postButton = document.querySelector(".post-button");
-// if (postButton) {
-//   postButton.addEventListener("click", function (event) {
-//     if (!isLoggedIn) {
-//       event.preventDefault();
-//       window.location.href = "login";
-//     }
-//   });
-// }
 document.addEventListener("DOMContentLoaded", function () {
   // Ajax request to check login status
   var xhr = new XMLHttpRequest();

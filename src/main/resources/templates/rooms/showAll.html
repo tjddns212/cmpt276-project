@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../../styles/room-list.css" />
     <link rel="stylesheet" href="../../styles/auth.css">
+    <link rel="stylesheet" href="../../styles/menuBar.css">
     <script src="../../scripts/room-list.js" defer></script>
     <script src="../../scripts/auth.js" defer ></script>
-    
     <title>Room-list</title>
   </head>
   <body>
@@ -65,8 +65,6 @@
           <option value="pittMeadows">Pitt Meadows</option>
         </select>
       </div>
-      
-      
     </div>
 
     <ul class="room-cards">
@@ -76,8 +74,18 @@
         <p id="city" th:text="${room.city}"></p>
         <p th:text="${room.startingDate}"></p>
         <p id ="price" th:text="${room.price}"></p>
-        <a th:href="@{'/roomListing/'+ ${room.uid}}">View Details</a>
+        <a class="view-button" th:href="@{'/roomListing/'+ ${room.uid}}">View Details</a>      
       </li>
     </ul>
+    <script>
+      const viewButtons = document.querySelectorAll(".view-button");
+       viewButtons.forEach(function(button) {
+         button.addEventListener("click", function(event) {
+           if (!isLoggedIn) {
+             event.preventDefault();
+             window.location.href = "/login";
+           }
+       });})
+     </script>  
   </body>
 </html>
