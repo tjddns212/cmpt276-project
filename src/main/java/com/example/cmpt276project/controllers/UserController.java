@@ -170,18 +170,4 @@ public class UserController {
         model.addAttribute("message", "Your password is: " + user.get(0).getPassword());
         return "reset-password.html";
     }
-
-    // Get Delete Account
-    @GetMapping("/delete-account")
-    public String getDeleteAccount(@RequestParam int uid, HttpSession session, RedirectAttributes redirectAttributes) {
-        User user = (User) session.getAttribute("session_user");
-        if (user == null){
-            redirectAttributes.addFlashAttribute("message", "Unable to delete any accounts");
-        } else if (uid == user.getUid()) {
-            redirectAttributes.addFlashAttribute("message", "Unable to delete itself account");
-        } else {
-            userRepo.deleteById(uid);
-        }
-        return "redirect:/account-management";
-    }
 }

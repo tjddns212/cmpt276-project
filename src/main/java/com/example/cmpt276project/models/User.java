@@ -111,4 +111,8 @@ public class User {
 	public void setAvatar(int avatar) {
 		this.avatar = avatar;
 	}
+
+	public boolean isAdmin() {
+		return accountType.equals("Admin");
+	}
 }
