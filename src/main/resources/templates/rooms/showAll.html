@@ -69,8 +69,10 @@
 
     <ul class="room-cards">
       <li th:each="room : ${r}" class="room-card">
-        <img src="" alt="Room" />
-        <h2 th:text="${room.title}"></h2>
+        <img
+        th:src="@{'data:image/jpeg;base64,' + ${room.image.encodeBytesToString()}}"
+        alt="Room Image"
+      />        <h2 th:text="${room.title}"></h2>
         <p id="city" th:text="${room.city}"></p>
         <p th:text="${room.startingDate}"></p>
         <p id ="price" th:text="${room.price}"></p>

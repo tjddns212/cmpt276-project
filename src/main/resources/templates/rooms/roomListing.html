@@ -52,7 +52,10 @@
     </div>
     <div class="room-container">
       <h2 th:text="${roomListing.title}"></h2>
-      <img src="/images/placeholder_room_image.jpg" />
+      <img
+        th:src="@{'data:image/jpeg;base64,' + ${roomListing.image.encodeBytesToString()}}"
+        alt="Room Image"
+      />
       <h4>Address</h4>
       <p th:text="${roomListing.address}"></p>
       <h4>City</h4>
