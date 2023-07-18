@@ -29,7 +29,7 @@ public class UserController {
                         Thanks for using our forget password function, here is your password: %s.
                         
                     Best regards,
-                    RoomLink
+                    Room Link Team
                     """;
 
     @Autowired
