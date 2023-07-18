@@ -2,6 +2,13 @@ input = document.getElementsByTagName("input")
 span = document.getElementsByTagName("span")
 td = document.getElementsByTagName("td")
 center = document.getElementsByClassName("center")
+var email = document.getElementById("email")
+
+// Reference: https://www.simplilearn.com/tutorials/javascript-tutorial/email-validation-in-javascript
+var emailFormat = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+if (!email.value.match(emailFormat)) {
+    alert("Invalid Email Format");
+}
 
 setInterval(function() {
     width = window.innerWidth
