@@ -20,9 +20,20 @@
 		<main>
 
 			<h1 class = "center">User Profile</h1>
+
+			<button onclick = "document.getElementById('click').style.visibility = 'visible'" id = "button" style = "position: absolute; top: 0px; right: 0px;">
+				<img th:if = "${session.session_user.avatar == 0}" class = "avatar" th:src = "@{/images/illustration-of-human-icon-user-symbol-icon-modern-design-on-blank-background-free-vector.jpg}">
+				<img th:unless = "${session.session_user.avatar == 0}" class = "avatar" th:src="@{'data:' + ${imageType} + ';base64,' + ${imageData}}">
+			</button>
+
+			<form action = "changeAvatar" method = "post" id = "click" enctype = "multipart/form-data">
+				<input type = "file" name = "file" id = "file" accept = "image/*">
+				<button type = "submit" style = "width: 200px; float: left; margin-top: 10px; visibility: hidden" id = "changeButton">Change</button>
+				<button type = "button" onclick = "document.getElementById('click').style.visibility = 'hidden'" style = "width: 200px; background-color: red; float: left; margin-top: 10px;">Cancel</button>
+			</form>
+
 			<form action = "edit" method = "post">
-				<div th:each = "user:${users}">
-					<img class = "avatar" th:src = "@{/images/illustration-of-human-icon-user-symbol-icon-modern-design-on-blank-background-free-vector.jpg}">
+				<div>
 					<table>
 						<tr>
 							<td>
