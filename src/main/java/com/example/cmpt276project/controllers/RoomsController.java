@@ -17,9 +17,11 @@ import com.example.cmpt276project.models.Image;
 import com.example.cmpt276project.models.ImageRepository;
 import com.example.cmpt276project.models.Room;
 import com.example.cmpt276project.models.RoomRepository;
+import com.example.cmpt276project.models.User;
 
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class RoomsController {
@@ -40,8 +42,9 @@ public class RoomsController {
 
   @PostMapping("/rooms/add")
   public String addRoom(@RequestParam Map<String, String> newroom, @RequestParam("image") MultipartFile file,
-      HttpServletResponse response, Model model) throws IOException {
+      HttpServletResponse response, Model model, HttpSession session) throws IOException {
     System.out.println("ADD room");
+    User user = (User) session.getAttribute("session_user");
     String newTitle = newroom.get("name");
     String newAddress = newroom.get("address");
     String newCity = newroom.get("city");
@@ -51,7 +54,8 @@ public class RoomsController {
     String newEndingDate = newroom.get("endingDate");
     Image image = new Image(file.getOriginalFilename(), file.getContentType(), file.getBytes());
     imagesRepo.save(image);
-    Room newRoom = new Room(newTitle, newAddress, newCity, newPrice, newDescription, newStartingDate, newEndingDate);
+    Room newRoom = new Room(newTitle, newAddress, newCity, newPrice, newDescription, newStartingDate, newEndingDate,
+        user.getUid());
     newRoom.setImage(image);
     roomRepo.save(newRoom);
     response.setStatus(201);
