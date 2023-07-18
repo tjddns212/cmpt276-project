@@ -1,0 +1,30 @@
+.inner {
+  background-color: #011d77;
+  display: flex;
+  justify-content: space-between;
+  height: 8rem;
+  margin-bottom: 60px;
+  align-items: center;
+}
+nav {
+  margin-right: 30px;
+}
+nav a {
+  text-decoration: none;
+  color: white;
+  font-family: sans-serif, serif;
+  margin-right: 25px;
+}
+nav > :nth-child(-n + 4) {
+  font-size: 1.3rem;
+}
+#sign-up,
+#log-in {
+  font-size: 0.8rem;
+}
+.container-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 50px;
+}

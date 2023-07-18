@@ -1,7 +1,16 @@
 /* Styles for the Post My Room page */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #f8f8f8;
+}
 h1 {
+  font-family: "Playfair Display", serif;
   text-align: center;
   margin-bottom: 20px;
+  color: #011d77;
+  font-size: 3.5rem;
 }
 
 form {
@@ -37,4 +46,16 @@ form button:hover {
 
 form input[type="file"] {
   margin-bottom: 15px;
+}
+label {
+  font-size: 23px;
+}
+#select-option {
+  margin-bottom: 15px;
+}
+select {
+  width: 10rem;
+  height: 27px;
+  border-radius: 3px;
+  font-size: 17px;
 }

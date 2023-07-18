@@ -5,16 +5,66 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../styles/room-post.css" />
+    <link rel="stylesheet" href="../styles/menuBar.css">
+    <link rel="stylesheet" href="../styles/auth.css">
+    <script src="../scripts/auth.js" defer></script>
     <title>Post My Room</title>
   </head>
   <body>
+    <header><div class="inner">
+      <a href="/index.html" class="logo"><img src="../../images/roomlink_logo.png" alt="logo"></a>
+      <nav id="nav">
+        <a href="/rooms/view">LISTINGS</a>
+        <a href="#">FIND MY ROOMATE</a>
+        <a href="/community.html">COMMUNITY</a>
+        <a href="#">FAQ</a>
+        <div class="action">
+          <div class="profile" onclick="menuToggle();">
+            <img src="/images/illustration-of-human-icon-user-symbol-icon-modern-design-on-blank-background-free-vector.jpg" />
+          </div>
+          <div class="menu">
+            <h3>name<br />
+            <ul>
+              <li>
+                <a href="#">My profile</a>
+              </li>
+              <li>
+              <a href="/logout">Logout</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <a href="/chooseuser.html" id="sign-up" class="btn btn-signup">Sign Up</a>
+        <a href="/login" id="log-in" class="btn btn-login" git>Login</a>
+      </nav>
+    </div>
+    </div></header>
     <h1>Post My Room</h1>
 
     <form action="/rooms/add" method="post" enctype="multipart/form-data">
       <!-- Room details form fields -->
       <input type="text" id="title" name="title" placeholder="Title" />
       <input type="text" id="address" name="address" placeholder="Address" />
-      <input type="text" id="city" name="city" placeholder="City" />
+      <div id="select-option">
+        <label for="location-filter">City : </label>
+        <select id="location-filter" class="w-btn w-btn-indigo">
+        <option value="vancouver">Vancouver</option>
+        <option value="surrey">Surrey</option>
+        <option value="richmond">Richmond</option>
+        <option value="burnaby">Burnaby</option>
+        <option value="coquitlam">Coquitlam</option>
+        <option value="delta">Delta</option>
+        <option value="langley">Langley</option>
+        <option value="northVancouver">North Vancouver</option>
+        <option value="mapleRidge">Maple Ridge</option>
+        <option value="newWestminster">New Westminster</option>
+        <option value="portCoquitlam">Port Coquitlam</option>
+        <option value="westVancouver">West Vancouver</option>
+        <option value="whiteRock">White Rock</option>
+        <option value="pittMeadows">Pitt Meadows</option>
+      </select>
+      </div>
+      
       <input type="number" id="price" name="price" placeholder="Price" />
       <textarea
         name="description"
