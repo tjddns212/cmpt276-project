@@ -6,7 +6,7 @@ import java.util.Base64;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.*;
-
+import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -78,6 +78,8 @@ public class RoomsController {
   @GetMapping("/ownerListings/{id}")
   public String getOwnerListings(Model model, @PathVariable Integer id, HttpSession session) {
     User user = (User) session.getAttribute("session_user");
+    System.out.println("================---------------------------=============");
+    System.out.println(user);
     List<Room> listings = roomRepo.findAll().stream()
         .filter(room -> room.getOwner_id() == user.getUid()).collect(Collectors.toList());
 
