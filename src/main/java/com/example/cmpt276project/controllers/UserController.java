@@ -1,9 +1,9 @@
 package com.example.cmpt276project.controllers;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.example.cmpt276project.services.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,23 +11,32 @@ import org.springframework.web.bind.annotation.*;
 
 import com.example.cmpt276project.models.User;
 import com.example.cmpt276project.models.UserRepository;
-import com.example.cmpt276project.models.Room;
 import com.example.cmpt276project.models.RoomRepository;
 
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class UserController {
     
     private final UserRepository userRepo;
     private final RoomRepository roomRepo;
+    private final EmailService emailService;
+
+    private final String MAIL_SUBJECT = "Password of RoomLink Account";
+    private final String MAIL_MESSAGE_TEMPLATE = """
+                    Dear %s,
+                    
+                        Thanks for using our forget password function, here is your password: %s.
+                        
+                    Best regards,
+                    RoomLink
+                    """;
 
     @Autowired
-    public UserController(UserRepository userRepo, RoomRepository roomRepo) {
+    public UserController(UserRepository userRepo, RoomRepository roomRepo, EmailService emailService) {
         this.userRepo = userRepo;
         this.roomRepo = roomRepo;
+        this.emailService = emailService;
     }
 
     // Add user
@@ -81,15 +90,23 @@ public class UserController {
     // Post Reset Password
     @PostMapping("/reset-password")
     public String postResetPassword(@RequestParam String email, Model model) {
-        List<User> user = userRepo.findByEmail(email);
+        List<User> users = userRepo.findByEmail(email);
 
         // Email does not exist
-        if (user.isEmpty()) {
+        if (users.isEmpty()) {
             model.addAttribute("message", "This email does not exist");
             return "reset-password.html";
         }
 
-        model.addAttribute("message", "Your password is: " + user.get(0).getPassword());
+        User user = users.get(0);
+        try {
+            String toEmailAddress = user.getEmail();
+            String mailMessage = String.format(MAIL_MESSAGE_TEMPLATE, user.getNick(), user.getPassword());
+            emailService.sendMail(toEmailAddress, MAIL_SUBJECT, mailMessage);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        model.addAttribute("message", "The email has been sent to " + user.getEmail());
         return "reset-password.html";
     }
 }
