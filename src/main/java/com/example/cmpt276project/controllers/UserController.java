@@ -7,10 +7,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import com.example.cmpt276project.models.User;
 import com.example.cmpt276project.models.UserRepository;
@@ -20,6 +17,7 @@ import com.example.cmpt276project.models.RoomRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class UserController {
@@ -150,5 +148,40 @@ public class UserController {
 
         response.setStatus(201);
         return "user/editedProfile";
+    }
+
+    // Get Reset Password
+    @GetMapping("/reset-password")
+    public String getResetPassword() {
+        return "reset-password.html";
+    }
+
+    // Post Reset Password
+    @PostMapping("/reset-password")
+    public String postResetPassword(@RequestParam String email, Model model) {
+        List<User> user = userRepo.findByEmail(email);
+
+        // Email does not exist
+        if (user.isEmpty()) {
+            model.addAttribute("message", "This email does not exist");
+            return "reset-password.html";
+        }
+
+        model.addAttribute("message", "Your password is: " + user.get(0).getPassword());
+        return "reset-password.html";
+    }
+
+    // Get Delete Account
+    @GetMapping("/delete-account")
+    public String getDeleteAccount(@RequestParam int uid, HttpSession session, RedirectAttributes redirectAttributes) {
+        User user = (User) session.getAttribute("session_user");
+        if (user == null){
+            redirectAttributes.addFlashAttribute("message", "Unable to delete any accounts");
+        } else if (uid == user.getUid()) {
+            redirectAttributes.addFlashAttribute("message", "Unable to delete itself account");
+        } else {
+            userRepo.deleteById(uid);
+        }
+        return "redirect:/account-management";
     }
 }

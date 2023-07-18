@@ -7,7 +7,7 @@
 <body>
     <h1>Account Management</h1>
 
-    <table>
+    <table border="2" bgcolor="#efefef">
         <tr>
             <th>User ID</th>
             <th>Account Type</th>
@@ -16,15 +16,21 @@
             <th>First Name</th>
             <th>Last Name</th>
             <th>Nickname</th>
+            <th>Action</th>
         </tr>
-        <tr th:each="u: ${users}">
-            <td th:text="${u.uid}"></td>
-            <td th:text="${u.accountType}"></td>
-            <td th:text="${u.email}"></td>
-            <td th:text="${u.password}"></td>
-            <td th:text="${u.first}"></td>
-            <td th:text="${u.last}"></td>
-            <td th:text="${u.nick}"></td>
+        <tr th:each="user: ${users}">
+            <td th:text="${user.uid}"></td>
+            <td th:text="${user.accountType}"></td>
+            <td th:text="${user.email}"></td>
+            <td th:text="${user.password}"></td>
+            <td th:text="${user.first}"></td>
+            <td th:text="${user.last}"></td>
+            <td th:text="${user.nick}"></td>
+            <td>
+                <a th:href="@{'/delete-account?uid=' + ${user.uid}}">Delete</a>
+            </td>
         </tr>
     </table>
+
+    <p th:text="${message}"></p>
 </body>

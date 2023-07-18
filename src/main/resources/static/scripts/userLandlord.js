@@ -32,14 +32,6 @@ function validateForm_adduser() {
 		return false;
 	}
 
-	// Check the landlord address
-	var landlordAddress = document.getElementById("landlordAddress")
-	// Empty landlord address
-	if (landlordAddress.value == "") {
-		alert("Landlord Address must be filled out");
-		return false;
-	}
-
 	// Check the email
 	var email = document.getElementById("email")
 	// Empty email
