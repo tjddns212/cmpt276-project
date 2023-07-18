@@ -1,95 +1,97 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="stylesheet" th:href="@{/styles/profile.css}" />
-    <script th:src="@{/scripts/Profile.js}" defer></script>
 
-    <title>User Profile</title>
-  </head>
+	<head>
 
-  <body>
-    <header>RoomLink</header>
+		<meta charset="UTF-8" />
+		<link rel="stylesheet" th:href="@{/styles/profile.css}" />
+		<script th:src="@{/scripts/Profile.js}" defer></script>
 
-    <main>
-      <h1 class="center">User Profile</h1>
-      <form action="edit" method="post">
-        <div th:each="user:${users}">
-          <img
-            class="avatar"
-            th:src="@{/images/illustration-of-human-icon-user-symbol-icon-modern-design-on-blank-background-free-vector.jpg}"
-          />
-          <table>
-            <tr>
-              <td>
-                <span style="width: 250px; display: inline-block"
-                  >First Name:</span
-                ><input th:value="${user.first}" name="first" id="first" />
-              </td>
-              <td>
-                <span style="width: 250px; display: inline-block"
-                  >Last Name:</span
-                ><input th:value="${user.last}" name="last" id="last" />
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <span style="width: 250px; display: inline-block"
-                  >Nickname:</span
-                ><input th:value="${user.nick}" name="nick" id="nick" />
-              </td>
-              <td>
-                <span style="width: 250px; display: inline-block">Gender:</span
-                ><input th:value="${user.gender}" name="gender" id="gender" />
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <span style="width: 250px; display: inline-block">Email:</span
-                ><input th:value="${user.email}" name="email" id="email" />
-              </td>
-              <td>
-                <span style="width: 250px; display: inline-block"
-                  >Password:</span
-                ><input
-                  th:value="${user.password}"
-                  name="password"
-                  id="password"
-                />
-              </td>
-            </tr>
-          </table>
-          <!-- <table th:if="${user.room != 0}">
-            <tr th:each="room:${rooms}">
-              <td>
-                <span style="width: 250px; display: inline-block"
-                  >Room Address:</span
-                ><input
-                  th:value="${room.address}"
-                  name="address"
-                  id="address"
-                />
-              </td>
-            </tr>
-          </table> -->
+		<title>User Profile</title>
 
-          <button class="center" type="submit">Update</button>
-          <input
-            th:value="${user.uid}"
-            name="uid"
-            id="uid"
-            style="position: absolute; visibility: hidden"
-          />
-          <input
-            th:value="${user.room}"
-            name="room"
-            id="room"
-            style="position: absolute; visibility: hidden"
-          />
-        </div>
-      </form>
-    </main>
+	</head>
 
-    <footer></footer>
-  </body>
+	<body>
+
+		<header>
+			<a href = "/"><img th:src = "@{/images/roomlink_logo.png}"></a>
+		</header>
+
+		<main>
+
+			<h1 class="center">User Profile</h1>
+			<form action="edit" method="post">
+				<div th:each = "user:${users}">
+					<img class = "avatar" th:src = "@{/images/illustration-of-human-icon-user-symbol-icon-modern-design-on-blank-background-free-vector.jpg}">
+					<table>
+						<tr>
+							<td>
+								<span style="width: 250px; display: inline-block">First Name:</span><input th:value = "${user.first}" name = "first" id = "first">
+							</td>
+							<td>
+								<span style="width: 250px; display: inline-block"
+									>Last Name:</span
+								><input th:value="${user.last}" name="last" id="last" />
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<span style="width: 250px; display: inline-block"
+									>Nickname:</span
+								><input th:value="${user.nick}" name="nick" id="nick" />
+							</td>
+							<td>
+								<span style="width: 250px; display: inline-block">Gender:</span
+								><input th:value="${user.gender}" name="gender" id="gender" />
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<span style="width: 250px; display: inline-block">Email:</span
+								><input th:value="${user.email}" name="email" id="email" />
+							</td>
+							<td>
+								<span style="width: 250px; display: inline-block"
+									>Password:</span
+								><input
+									th:value="${user.password}"
+									name="password"
+									id="password"
+								/>
+							</td>
+						</tr>
+					</table>
+					<!-- <table th:if="${user.room != 0}">
+						<tr th:each="room:${rooms}">
+							<td>
+								<span style="width: 250px; display: inline-block"
+									>Room Address:</span
+								><input
+									th:value="${room.address}"
+									name="address"
+									id="address"
+								/>
+							</td>
+						</tr>
+					</table> -->
+
+					<button class="center" type="submit">Update</button>
+					<input
+						th:value="${user.uid}"
+						name="uid"
+						id="uid"
+						style="position: absolute; visibility: hidden"
+					/>
+					<input
+						th:value="${user.room}"
+						name="room"
+						id="room"
+						style="position: absolute; visibility: hidden"
+					/>
+				</div>
+			</form>
+		</main>
+
+		<footer></footer>
+	</body>
 </html>

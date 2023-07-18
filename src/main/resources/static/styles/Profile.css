@@ -1,5 +1,6 @@
-html, input {
+html {
     font-size: 32px;
+    background-color: #1d5d9b;
 }
 
 header {
@@ -7,12 +8,13 @@ header {
 }
 
 h1 {
-    color: orangered;
+    color: white;
     text-align: center;
 }
 
 input {
     color: #888888;
+    font-size: 32px;
 }
 
 button {

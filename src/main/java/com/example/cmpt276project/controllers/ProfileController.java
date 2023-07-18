@@ -35,6 +35,9 @@ public class ProfileController {
     @GetMapping("user/get")
     public String getUserByUid(@RequestParam Map<String, String> newuser, HttpServletResponse response, Model model, HttpSession session) {
         User user = (User) session.getAttribute("session_user");
+        System.out.println("\n\n\n");
+        System.out.println(user.getUid());
+        System.out.println("\n\n\n");
         List<User> users = userRepo.findByUid(user.getUid());
         // List<Room> rooms = roomRepo.findByUid(users.get(0).getRoom());
 
