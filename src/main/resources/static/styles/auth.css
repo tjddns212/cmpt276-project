@@ -46,8 +46,8 @@
   transform: rotate(45deg);
 }
 
-.action .menu h3 {
-  width: 100%;
+.action .menu {
+  width: 140px;
   text-align: center;
   font-size: 18px;
   padding: 10px 0;
@@ -61,7 +61,7 @@
   margin: 0;
 }
 
-.action .menu h3 span {
+.action .menu span {
   font-size: 14px;
   color: #cecece;
   font-weight: 300;
