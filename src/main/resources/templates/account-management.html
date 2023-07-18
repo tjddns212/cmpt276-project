@@ -5,6 +5,7 @@
     <title>Account Management</title>
 </head>
 <body>
+    <a href="index.html" class="logo"><img src="./images/roomlink_logo.png" alt="logo"></a>
     <h1>Account Management</h1>
 
     <table border="2" bgcolor="#efefef">
@@ -27,7 +28,9 @@
             <td th:text="${user.last}"></td>
             <td th:text="${user.nick}"></td>
             <td>
-                <a th:href="@{'/delete-account?uid=' + ${user.uid}}">Delete</a>
+                <form th:action="@{'/delete-account?uid=' + ${user.uid}}" method="post">
+                    <button type="Submit">Delete</button>
+                </form>
             </td>
         </tr>
     </table>
