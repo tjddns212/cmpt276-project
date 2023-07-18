@@ -22,7 +22,7 @@ public class RoomListing {
         User user = (User) session.getAttribute("session_user");
         Room roomListing = roomsRepo.findById(id).get();
         model.addAttribute("roomListing", roomListing);
+        model.addAttribute("user", user);
         return "rooms/roomListing";
     }
-
 }
