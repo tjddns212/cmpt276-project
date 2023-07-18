@@ -72,40 +72,6 @@ public class UserController {
         return "user/addeduser.html";
     }
 
-    @GetMapping("user/get")
-    public String getUserByUid(@RequestParam Map<String, String> newuser, HttpServletResponse response, Model model) {
-        System.out.println("Get User");
-        List<User> users = userRepo.findByUid(Integer.parseInt(newuser.get("uid")));
-        List<Room> rooms = roomRepo.findByUid(users.get(0).getRoom());
-        model.addAttribute("users", users);
-        model.addAttribute("rooms", rooms);
-        response.setStatus(201);
-        return "user/Profile";
-    }
-
-    @PostMapping("user/edit")
-    public String editUserByUid(@RequestParam Map<String, String> newuser, HttpServletResponse response) {
-        List<User> users = userRepo.findByUid(Integer.parseInt(newuser.get("uid")));
-        User user = users.get(0);
-        user.setFirst(newuser.get("first"));
-        user.setLast(newuser.get("last"));
-        user.setNick(newuser.get("nick"));
-        user.setGender(newuser.get("gender"));
-        user.setEmail(newuser.get("email"));
-        user.setPassword(newuser.get("password"));
-        userRepo.save(user);
-
-        if (user.getRoom() != 0) {
-            List<Room> rooms = roomRepo.findByUid(user.getRoom());
-            Room room = rooms.get(0);
-            room.setAddress(newuser.get("address"));
-            roomRepo.save(room);
-        }
-
-        response.setStatus(201);
-        return "user/editedProfile";
-    }
-
     // Get Reset Password
     @GetMapping("/reset-password")
     public String getResetPassword() {
