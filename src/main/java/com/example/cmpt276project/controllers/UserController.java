@@ -106,7 +106,7 @@ public class UserController {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        model.addAttribute("message", "The email has been sent to " + user.getEmail());
+        model.addAttribute("message", "The password has been sent to " + user.getEmail());
         return "reset-password.html";
     }
 }
