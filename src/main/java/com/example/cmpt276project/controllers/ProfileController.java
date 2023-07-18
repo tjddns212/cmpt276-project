@@ -51,6 +51,11 @@ public class ProfileController {
     public String editUserByUid(@RequestParam Map<String, String> newuser, HttpServletResponse response) {
         List<User> users = userRepo.findByUid(Integer.parseInt(newuser.get("uid")));
         User user = users.get(0);
+        List<User> all = userRepo.findByEmail(newuser.get("email"));
+        
+        if (all.size() > 0) {
+            return "user/emailUsed";
+        }
         user.setFirst(newuser.get("first"));
         user.setLast(newuser.get("last"));
         user.setNick(newuser.get("nick"));
@@ -58,13 +63,6 @@ public class ProfileController {
         user.setEmail(newuser.get("email"));
         user.setPassword(newuser.get("password"));
         userRepo.save(user);
-
-        // if (user.getRoom() != 0) {
-        //     List<Room> rooms = roomRepo.findByUid(user.getRoom());
-        //     Room room = rooms.get(0);
-        //     room.setAddress(newuser.get("address"));
-        //     roomRepo.save(room);
-        // }
 
         response.setStatus(201);
         return "user/editedProfile";
