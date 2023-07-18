@@ -51,6 +51,7 @@ public class ImageController {
         String base64Image = Base64.getEncoder().encodeToString(imageData);
 
         model.addAttribute("imageData", base64Image);
+        model.addAttribute("imageType", image.getType());
         return "displayImage";
     }
 }

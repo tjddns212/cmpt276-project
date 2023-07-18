@@ -1,41 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../styles/user.css" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Castoro+Titling&family=Cormorant+Garamond&family=Marck+Script&family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:ital@1&family=Poppins:wght@400;700&family=Proza+Libre&family=Roboto:wght@400;700&family=Taviraj&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="../../styles/signup.css" />
     <title>Document</title>
     <script src="/scripts/user.js" defer></script>
-</head>
-<body class = "mainframe">
-    <h1>
-        <a href="/">RoomLink</a>
-    </h1>
+  </head>
+  <body class="mainframe">
+    <div class="inner">
+      <a href="/" class="logo"
+        ><img src="./images/roomlink_logo.png" alt="logo"
+      /></a>
+    </div>
     <p>Hi Student,</p>
     <main>
-        <form action ="user/adduser" method = "post" onsubmit="return validateForm_adduser()">
-            <div>
-                <input type="text" id="first" name = "first" placeholder="First Name">
-            </div>
-            <div>
-                <input type="text" id="last" name = "last" placeholder="Last Name">
-            </div>
-            <div>
-                <input type="text" id="nick" name = "nick" placeholder="Nickname">
-            </div>
-            <div>
-                <input type="text" id="gender" name = "gender" placeholder="Gender (M/F/N)">
-            </div>
-            <div>
-                <input type="email" id="email" name = "email" placeholder="Email as Logon ID">
-            </div>
-            <div>
-                <input type="password" id="password" name = "password" placeholder="Password">
-            </div>
-            <div>
-                <input class="btn btn-primary" type="submit" value="Create"></form>
-            </div>
-        </form>
+      <form
+        action="user/adduser"
+        method="post"
+        onsubmit="return validateForm_adduser()"
+      >
+        <legend>Signup</legend>
+        <div class="form-info-container">
+          <label>First Name </label>
+          <input type="text" id="first" name="first" placeholder="First Name" />
+        </div>
+        <div class="form-info-container">
+          <label>Last Name </label>
+          <input type="text" id="last" name="last" placeholder="Last Name" />
+        </div>
+        <div class="form-info-container">
+          <label>Nickname </label>
+          <input type="text" id="nick" name="nick" placeholder="Nickname" />
+        </div>
+        <div class="form-info-container">
+          <label>Gender </label>
+          <input
+            type="text"
+            id="gender"
+            name="gender"
+            placeholder="Gender (M/F/N)"
+          />
+        </div>
+        <div class="form-info-container">
+          <label>Email </label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Email as Logon ID"
+          />
+        </div>
+        <div class="form-info-container">
+          <label>Password </label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Password"
+          />
+        </div>
+        <div>
+          <input class="btn btn-primary" type="submit" value="Create" />
+        </div>
+        <p>
+          Already have an account?
+          <a href="./login"> Log In </a>
+        </p>
+      </form>
     </main>
-</body>
+  </body>
 </html>
