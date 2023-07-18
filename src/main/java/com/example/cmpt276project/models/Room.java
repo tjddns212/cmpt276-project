@@ -15,6 +15,7 @@ public class Room {
   private String description;
   private String startingDate;
   private String endingDate;
+  private int owner_id;
   @OneToOne
   @JoinColumn(name = "image_id")
   private Image image;
@@ -23,7 +24,7 @@ public class Room {
   }
 
   public Room(String title, String address, String city, Double price, String description, String startingDate,
-      String endingDate) {
+      String endingDate, Integer owner_id) {
     this.title = title;
     this.address = address;
     this.price = price;
@@ -31,6 +32,7 @@ public class Room {
     this.description = description;
     this.startingDate = startingDate;
     this.endingDate = endingDate;
+    this.owner_id = owner_id;
   }
 
   public String getTitle() {
@@ -103,6 +105,14 @@ public class Room {
 
   public void setImage(Image image) {
     this.image = image;
+  }
+
+  public Integer getOwner_id() {
+    return owner_id;
+  }
+
+  public void setOwner_id(Integer owner_id) {
+    this.owner_id = owner_id;
   }
 
 }
