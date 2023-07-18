@@ -30,9 +30,9 @@ import java.util.Set;
 @Service
 public class EmailService {
 
-    private final String FROM_EMAIL_ADDRESS = "haha20030319@gmail.com";
+    private final String FROM_EMAIL_ADDRESS = "roomlinkteam@gmail.com";
     private final String CREDENTIALS_FILE_PATH = "/credentials.json";
-    private final String APPLICATION_NAME = "Mail Testing";
+    private final String APPLICATION_NAME = "Room Link";
 
     private final Gmail service;
 
