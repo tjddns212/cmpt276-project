@@ -17,7 +17,6 @@ import com.example.cmpt276project.models.RoomRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class UserController {
@@ -30,7 +29,7 @@ public class UserController {
         this.userRepo = userRepo;
         this.roomRepo = roomRepo;
     }
-    
+
     // Add user
     @PostMapping("user/adduser")
     public String addUser(@RequestParam Map<String, String> newuser, HttpServletResponse response){
@@ -39,7 +38,7 @@ public class UserController {
         String newEmail = newuser.get("email");
         List<User> userlist = userRepo.findByEmail(newEmail);
         if (!userlist.isEmpty()) {
-            return "user/addeduserFailed";
+            return "user/addeduserFailed.html";
         }
 
         String newFirst = newuser.get("first");
@@ -49,7 +48,7 @@ public class UserController {
         String newPassword = newuser.get("password");            
         userRepo.save(new User(newFirst, newLast, newNick, newGender, newEmail, newPassword, 0, "Student"));
         response.setStatus(201);
-        return "user/addeduser";
+        return "user/addeduser.html";
     }
 
     // Add user landlord
@@ -60,7 +59,7 @@ public class UserController {
         String newEmail = newuser.get("email");
         List<User> userlist = userRepo.findByEmail(newEmail);
         if (!userlist.isEmpty()) {
-            return "user/addeduserFailed";
+            return "user/addeduserFailed.html";
         }
 
         String newFirst = newuser.get("first");
@@ -70,52 +69,9 @@ public class UserController {
         String newPassword = newuser.get("password");           
         userRepo.save(new User(newFirst, newLast, newNick, newGender, newEmail, newPassword,0, "Landlord"));
         response.setStatus(201);
-        return "user/addeduser";
+        return "user/addeduser.html";
     }
 
-    @GetMapping("/login")
-    public String getLogin(Model model, HttpServletRequest request, HttpSession session){
-        User user = (User) session.getAttribute("session_user");
-        if (user == null){
-            return "login";
-        }
-        else {
-            model.addAttribute("user",user);
-            return "index.html";
-        }
-    }
-
-    @PostMapping("/login")
-    public String login(@RequestParam Map<String, String> formData, Model model, HttpServletRequest request, HttpSession session){
-        String email = formData.get("email");
-        String pwd = formData.get("password");
-        List<User> userlist = userRepo.findByEmailAndPassword(email,pwd);
-        if (userlist.isEmpty()){
-            return "loginfail.html";
-        }
-        else{
-            User user = userlist.get(0);
-            request.getSession().setAttribute("session_user", user);
-            model.addAttribute("user", user);
-            return "redirect:/index.html";
-        }
-    }
-
-    @GetMapping("/checkLoginStatus")
-    @ResponseBody
-    public Map<String, Boolean> checkLoginStatus(HttpSession session) {
-        Map<String, Boolean> response = new HashMap<>();
-        User user = (User) session.getAttribute("session_user");
-        response.put("loggedIn", user != null);
-        return response;
-    }
-
-    @GetMapping("/logout")
-    public String destroySession(HttpServletRequest request){
-        request.getSession().invalidate();
-        return "redirect:/index.html";
-    }
-    
     @GetMapping("user/get")
     public String getUserByUid(@RequestParam Map<String, String> newuser, HttpServletResponse response, Model model) {
         System.out.println("Get User");
