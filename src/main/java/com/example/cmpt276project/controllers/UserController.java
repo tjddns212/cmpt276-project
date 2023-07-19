@@ -3,7 +3,7 @@ package com.example.cmpt276project.controllers;
 import java.util.List;
 import java.util.Map;
 
-import com.example.cmpt276project.services.EmailService;
+// import com.example.cmpt276project.services.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,7 +20,7 @@ public class UserController {
     
     private final UserRepository userRepo;
     private final RoomRepository roomRepo;
-    private final EmailService emailService;
+    // private final EmailService emailService;
 
     private final String MAIL_SUBJECT = "Password of RoomLink Account";
     private final String MAIL_MESSAGE_TEMPLATE = """
@@ -33,10 +33,10 @@ public class UserController {
                     """;
 
     @Autowired
-    public UserController(UserRepository userRepo, RoomRepository roomRepo, EmailService emailService) {
+    public UserController(UserRepository userRepo, RoomRepository roomRepo) {
         this.userRepo = userRepo;
         this.roomRepo = roomRepo;
-        this.emailService = emailService;
+        // this.emailService = emailService;
     }
 
     // Add user
@@ -81,33 +81,33 @@ public class UserController {
         return "user/addeduser.html";
     }
 
-    // Get Reset Password
-    @GetMapping("/reset-password")
-    public String getResetPassword() {
-        return "reset-password.html";
-    }
+//     // Get Reset Password
+//     @GetMapping("/reset-password")
+//     public String getResetPassword() {
+//         return "reset-password.html";
+//     }
 
-    // Post Reset Password
-    @PostMapping("/reset-password")
-    public String postResetPassword(@RequestParam String email, Model model) {
-        List<User> users = userRepo.findByEmail(email);
+//     // Post Reset Password
+//     @PostMapping("/reset-password")
+//     public String postResetPassword(@RequestParam String email, Model model) {
+//         List<User> users = userRepo.findByEmail(email);
 
-        // Email does not exist
-        if (users.isEmpty()) {
-            model.addAttribute("message", "This email does not exist");
-            return "reset-password.html";
-        }
+//         // Email does not exist
+//         if (users.isEmpty()) {
+//             model.addAttribute("message", "This email does not exist");
+//             return "reset-password.html";
+//         }
 
-        User user = users.get(0);
-        try {
-            String toEmailAddress = user.getEmail();
-            String mailMessage = String.format(MAIL_MESSAGE_TEMPLATE, user.getNick(), user.getPassword());
-            emailService.sendMail(toEmailAddress, MAIL_SUBJECT, mailMessage);
-            //model.addAttribute("message", "Your password is " + user.getPassword());
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-        model.addAttribute("message", "The password has been sent to " + user.getEmail());
-        return "reset-password.html";
-    }
+//         User user = users.get(0);
+//         try {
+//             String toEmailAddress = user.getEmail();
+//             String mailMessage = String.format(MAIL_MESSAGE_TEMPLATE, user.getNick(), user.getPassword());
+//             emailService.sendMail(toEmailAddress, MAIL_SUBJECT, mailMessage);
+//             //model.addAttribute("message", "Your password is " + user.getPassword());
+//         } catch (Exception e) {
+//             throw new RuntimeException(e);
+//         }
+//         model.addAttribute("message", "The password has been sent to " + user.getEmail());
+//         return "reset-password.html";
+//     }
 }
