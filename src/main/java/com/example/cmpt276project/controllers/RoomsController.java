@@ -45,7 +45,7 @@ public class RoomsController {
       HttpServletResponse response, Model model, HttpSession session) throws IOException {
     System.out.println("ADD room");
     User user = (User) session.getAttribute("session_user");
-    String newTitle = newroom.get("name");
+    String newTitle = newroom.get("title");
     String newAddress = newroom.get("address");
     String newCity = newroom.get("city");
     Double newPrice = Double.parseDouble(newroom.get("price"));
@@ -65,8 +65,8 @@ public class RoomsController {
     System.out.println("BYTES:" + image.getImage());
     String base64String = Base64.getEncoder().encodeToString(image.getImage());
     System.out.println(base64String);
-    model.addAttribute("room", newRoom);
-    return "rooms/addedRoom";
+    model.addAttribute("roomListing", newRoom);
+    return "rooms/roomListing";
   }
 
 }
