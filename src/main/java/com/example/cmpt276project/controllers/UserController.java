@@ -3,7 +3,6 @@ package com.example.cmpt276project.controllers;
 import java.util.List;
 import java.util.Map;
 
-import com.example.cmpt276project.services.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,7 +19,6 @@ public class UserController {
     
     private final UserRepository userRepo;
     private final RoomRepository roomRepo;
-    private final EmailService emailService;
 
     private final String MAIL_SUBJECT = "Password of RoomLink Account";
     private final String MAIL_MESSAGE_TEMPLATE = """
@@ -33,10 +31,9 @@ public class UserController {
                     """;
 
     @Autowired
-    public UserController(UserRepository userRepo, RoomRepository roomRepo, EmailService emailService) {
+    public UserController(UserRepository userRepo, RoomRepository roomRepo) {
         this.userRepo = userRepo;
         this.roomRepo = roomRepo;
-        this.emailService = emailService;
     }
 
     // Add user
@@ -102,12 +99,13 @@ public class UserController {
         try {
             String toEmailAddress = user.getEmail();
             String mailMessage = String.format(MAIL_MESSAGE_TEMPLATE, user.getNick(), user.getPassword());
-            emailService.sendMail(toEmailAddress, MAIL_SUBJECT, mailMessage);
-            //model.addAttribute("message", "Your password is " + user.getPassword());
+            // emailService.sendMail(toEmailAddress, MAIL_SUBJECT, mailMessage);
+            // model.addAttribute("message", "The password has been sent to " + user.getEmail());
+            model.addAttribute("message", "Your password is " + user.getPassword());
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        model.addAttribute("message", "The password has been sent to " + user.getEmail());
+
         return "reset-password.html";
     }
 }
