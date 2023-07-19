@@ -102,12 +102,12 @@ public class UserController {
         try {
             String toEmailAddress = user.getEmail();
             String mailMessage = String.format(MAIL_MESSAGE_TEMPLATE, user.getNick(), user.getPassword());
-            //emailService.sendMail(toEmailAddress, MAIL_SUBJECT, mailMessage);
-            model.addAttribute("message", "Your password is " + user.getPassword());
+            emailService.sendMail(toEmailAddress, MAIL_SUBJECT, mailMessage);
+            //model.addAttribute("message", "Your password is " + user.getPassword());
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        //model.addAttribute("message", "The password has been sent to " + user.getEmail());
+        model.addAttribute("message", "The password has been sent to " + user.getEmail());
         return "reset-password.html";
     }
 }
