@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <!-- Your head content goes here -->
+  </head>
+  <body>
+    <div class="menu">
+      <h3 id="login-nick" th:fragment="menu" th:text="${user.nick}">
+        Default Nickname
+      </h3>
+      <!-- Rest of your menu items go here -->
+    </div>
+  </body>
+</html>

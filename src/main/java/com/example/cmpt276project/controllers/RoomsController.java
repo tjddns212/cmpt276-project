@@ -38,10 +38,15 @@ public class RoomsController {
     System.out.println("getting all rooms");
     User user = (User) session.getAttribute("session_user");
 
+
     List<Room> rooms = roomRepo.findAll();
 
     model.addAttribute("r", rooms);
-    model.addAttribute("user", user);
+    User defaultUser = new User();
+    defaultUser.setNick("Default Nickname");
+
+    // Add either the user object or the default user object to the model
+    model.addAttribute("user", user != null ? user : defaultUser);
 
     return "rooms/showAll";
   }

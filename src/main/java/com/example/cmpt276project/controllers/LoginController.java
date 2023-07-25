@@ -70,4 +70,36 @@ public class LoginController {
         response.put("loggedIn", user != null);
         return response;
     }
-}
+    //update profile 
+    @GetMapping("/")
+    public String index(Model model,HttpSession session){
+        
+        User user = (User) session.getAttribute("session_user");
+        if (user != null) {
+            model.addAttribute("user", user);
+        } else {
+            // Add a default user object with a default nickname when the user is not logged in
+            User defaultUser = new User();
+            defaultUser.setNick("Default Nickname");
+            model.addAttribute("user", defaultUser);
+        }
+        return "index";
+    }
+    @GetMapping("/postRoom")
+        public String post(Model model,HttpSession session){
+        
+            User user = (User) session.getAttribute("session_user");
+            User defaultUser = new User();
+            defaultUser.setNick("Default Nickname");
+
+    // Add either the user object or the default user object to the model
+            if (user != null){
+               model.addAttribute("user", user); 
+            }
+            else{
+                model.addAttribute("user", defaultUser);
+            }
+             
+            return "rooms/postRoom";
+        }
+    }
