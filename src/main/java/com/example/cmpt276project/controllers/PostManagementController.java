@@ -1,5 +1,7 @@
 package com.example.cmpt276project.controllers;
 
+import com.example.cmpt276project.models.Room;
+import com.example.cmpt276project.models.RoomRepository;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,17 +17,17 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.util.List;
 
 @Controller
-public class AccountManagementController {
-    
-    private final UserRepository userRepository;
+public class PostManagementController {
+
+    private final RoomRepository roomRepository;
 
     @Autowired
-    public AccountManagementController(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public PostManagementController(RoomRepository roomRepository) {
+        this.roomRepository = roomRepository;
     }
 
-    // Get account management
-    @GetMapping("/account-management")
+    // Get post management
+    @GetMapping("/post-management")
     public String getAccountManagement(Model model, HttpSession session) {
         User user = (User) session.getAttribute("session_user");
         if (user == null) {
@@ -34,13 +36,13 @@ public class AccountManagementController {
             return "redirect:/error/404.html";
         }
 
-        List<User> users = userRepository.findAll();
-        model.addAttribute("users", users);
-        return "account-management.html";
+        List<Room> rooms = roomRepository.findAll();
+        model.addAttribute("rooms", rooms);
+        return "post-management.html";
     }
 
     // Post Delete Account
-    @PostMapping("/delete-account")
+    @PostMapping("/delete-post")
     public String getDeleteAccount(@RequestParam int uid, HttpSession session, RedirectAttributes redirectAttributes) {
         User user = (User) session.getAttribute("session_user");
         if (user == null) {
@@ -49,14 +51,7 @@ public class AccountManagementController {
             return "redirect:/error/404.html";
         }
 
-        if (uid == user.getUid()) {
-            redirectAttributes.addFlashAttribute("message", "Unable to delete itself account");
-            return "redirect:/account-management";
-        }
-
-        userRepository.deleteById(uid);
-        return "redirect:/account-management";
+        roomRepository.deleteById(uid);
+        return "redirect:/post-management";
     }
-
-
 }
