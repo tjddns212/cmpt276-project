@@ -1,0 +1,17 @@
+.room-card {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+}
+
+.room-cards {
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 2.5rem;
+  margin-top: 3rem;
+}
+
+.delete-icon {
+  align-self: flex-end;
+  cursor: pointer;
+}
