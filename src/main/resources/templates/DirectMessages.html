@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang = "en">
+
+    <head>
+
+        <meta charset = "UTF-8">
+        <link rel = "stylesheet" th:src = "@{/styles/DirectMessages.css}">
+
+
+        <title>DM</title>
+
+    </head>
+
+    <body>
+
+        <header>
+			<a href="/"><img th:src="@{/images/roomlink_logo.png}" /></a>
+		</header>
+
+        <main>
+
+            <form action = "message/send" method = "put">
+                <input name = "content" id = "content">
+                <button type = "submit">Send</button>
+            </form>
+
+        </main>
+
+    </body>
+
+</html>
