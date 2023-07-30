@@ -4,7 +4,7 @@
     <head>
 
         <meta charset = "UTF-8">
-        <link rel = "stylesheet" th:src = "@{/styles/DirectMessages.css}">
+        <link rel = "stylesheet" th:href = "@{/styles/DirectMessages.css}">
 
 
         <title>DM</title>
@@ -19,7 +19,18 @@
 
         <main>
 
-            <form action = "message/send" method = "put">
+            <div th:each = "message:${messages}">
+                <div th:if = "${message.sender == session.session_user.uid}" class = "send">
+                    <p th:text = "${message.time}"></p>
+                    <p th:text = "${message.content}"></p>
+                </div>
+                <div th:unless = "${message.sender == session.session_user.uid}" class = "receive">
+                    <p th:text = "${message.time}"></p>
+                    <p th:text = "${message.content}"></p>
+                </div>
+            </div>
+
+            <form action = "DM" method = "post">
                 <input name = "content" id = "content">
                 <button type = "submit">Send</button>
             </form>
