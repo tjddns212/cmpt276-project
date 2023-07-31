@@ -11,13 +11,13 @@ public class Message {
     private int mid;
     private int sender;
     private int receiver;
-    private String content;
     private String time;
+    @Column(length = 500)
+    private String content;
 
     public Message() {}
 
-    public Message(int mid, int sender, int receiver, String content, String time) {
-        this.mid = mid;
+    public Message(int sender, int receiver, String content, String time) {
         this.sender = sender;
         this.receiver = receiver;
         this.content = content;
