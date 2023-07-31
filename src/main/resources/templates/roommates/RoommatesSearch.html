@@ -84,6 +84,15 @@
           <label for="roommateName">Name: </label>
           <input type="text" name="roommateName" id="roommateName" />
         </div>
+        <div class="roommates">
+          <div th:each="roommate : ${roommates}" class="roommate">
+            <div class="roommate-info">
+              <p th:text="${roommate.first}"></p>
+              <p th:text="${roommate.gender}"></p>
+            </div>
+            <button class="btn btn-secondary">View Profile</button>
+          </div>
+        </div>
       </div>
     </div>
   </body>
