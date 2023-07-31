@@ -27,6 +27,7 @@
   display: flex;
   padding: 2rem 4rem;
   flex-flow: column nowrap;
+  border-radius: 8px;
   gap: 0.8rem;
   min-width: 400px;
   box-shadow: rgba(36, 36, 37, 0.2) 0px 7px 29px 0px;
@@ -36,4 +37,9 @@
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
+}
+
+.roommate a {
+  cursor: pointer;
+  color: white !important;
 }

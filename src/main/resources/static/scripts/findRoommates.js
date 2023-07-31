@@ -15,13 +15,15 @@ const renderRoommates = () => {
     const infoDiv = document.createElement("div");
     infoDiv.classList.add("roommate-info");
     const name = document.createElement("p");
-    name.textContent = roommate.first;
+    name.textContent = roommate.first + " " + roommate.last;
     const gender = document.createElement("p");
     gender.textContent = roommate.gender;
-    const button = document.createElement("button");
+    const button = document.createElement("a");
     button.classList.add("btn");
     button.classList.add("btn-secondary");
     button.textContent = "View Profile";
+    const pathName = "/ProfileInfo/" + roommate.uid;
+    button.setAttribute("href", pathName);
     infoDiv.appendChild(name);
     infoDiv.appendChild(gender);
     roommateDiv.appendChild(infoDiv);

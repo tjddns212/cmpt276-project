@@ -36,7 +36,8 @@ public class ProfileController {
     public ImageRepository imageRepo;
 
     @GetMapping("user/get")
-    public String getUserByUid(@RequestParam Map<String, String> newuser, HttpServletResponse response, Model model, HttpSession session) throws IOException{
+    public String getUserByUid(@RequestParam Map<String, String> newuser, HttpServletResponse response, Model model,
+            HttpSession session) throws IOException {
         User user = (User) session.getAttribute("session_user");
         System.out.println("\n\n\n");
         System.out.println(user.getUid());
@@ -51,7 +52,8 @@ public class ProfileController {
 
             model.addAttribute("imageData", base64Image);
             model.addAttribute("imageType", image.getType());
-        } catch (Exception e) {}
+        } catch (Exception e) {
+        }
         // List<Room> rooms = roomRepo.findByUid(users.get(0).getRoom());
 
         model.addAttribute("user", users.get(0));
@@ -65,7 +67,7 @@ public class ProfileController {
         List<User> users = userRepo.findByUid(Integer.parseInt(newuser.get("uid")));
         User user = users.get(0);
         List<User> all = userRepo.findByEmail(newuser.get("email"));
-        
+
         if (all.size() > 0 && !user.getEmail().equals(newuser.get("email"))) {
             return "user/emailUsed";
         }
@@ -82,7 +84,8 @@ public class ProfileController {
     }
 
     @PostMapping("user/changeAvatar")
-    public String changeAvatar(@RequestParam("file") MultipartFile file, HttpSession session, Model model) throws IOException{
+    public String changeAvatar(@RequestParam("file") MultipartFile file, HttpSession session, Model model)
+            throws IOException {
         User user = (User) session.getAttribute("session_user");
 
         try {
@@ -97,16 +100,16 @@ public class ProfileController {
             image.setType(fileType);
 
             imageRepo.save(image);
-            user.setAvatar((int)imageRepo.count());
+            user.setAvatar((int) image.getUid());
             userRepo.save(user);
 
             String base64Image = Base64.getEncoder().encodeToString(imageData);
             model.addAttribute("imageData", base64Image);
             model.addAttribute("imageType", image.getType());
 
-        } catch (Exception e) {}
-        
-        
+        } catch (Exception e) {
+        }
+
         model.addAttribute("user", user);
         return "user/Profile";
     }
