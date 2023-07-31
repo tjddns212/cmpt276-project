@@ -15,8 +15,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.example.cmpt276project.models.Image;
 import com.example.cmpt276project.models.ImageRepository;
-import com.example.cmpt276project.models.Room;
-import com.example.cmpt276project.models.RoomRepository;
 import com.example.cmpt276project.models.User;
 import com.example.cmpt276project.models.UserRepository;
 
@@ -29,15 +27,12 @@ public class ProfileController {
     @Autowired
     public UserRepository userRepo;
 
-    // @Autowired
-    // public RoomRepository roomRepo;
-
     @Autowired
     public ImageRepository imageRepo;
 
     @GetMapping("user/get")
-    public String getUserByUid(@RequestParam Map<String, String> newuser, HttpServletResponse response, Model model,
-            HttpSession session) throws IOException {
+    public String getUserByUid(@RequestParam Map<String, String> newuser, HttpServletResponse response, Model model, HttpSession session) throws IOException {
+        
         User user = (User) session.getAttribute("session_user");
         System.out.println("\n\n\n");
         System.out.println(user.getUid());
@@ -52,18 +47,16 @@ public class ProfileController {
 
             model.addAttribute("imageData", base64Image);
             model.addAttribute("imageType", image.getType());
-        } catch (Exception e) {
-        }
-        // List<Room> rooms = roomRepo.findByUid(users.get(0).getRoom());
+        } catch (Exception e) {}
 
         model.addAttribute("user", users.get(0));
-        // model.addAttribute("rooms", rooms);
         response.setStatus(201);
         return "user/Profile";
     }
 
     @PostMapping("user/edit")
     public String editUserByUid(@RequestParam Map<String, String> newuser, HttpServletResponse response) {
+        
         List<User> users = userRepo.findByUid(Integer.parseInt(newuser.get("uid")));
         User user = users.get(0);
         List<User> all = userRepo.findByEmail(newuser.get("email"));
@@ -84,8 +77,8 @@ public class ProfileController {
     }
 
     @PostMapping("user/changeAvatar")
-    public String changeAvatar(@RequestParam("file") MultipartFile file, HttpSession session, Model model)
-            throws IOException {
+    public String changeAvatar(@RequestParam("file") MultipartFile file, HttpSession session, Model model) throws IOException {
+        
         User user = (User) session.getAttribute("session_user");
 
         try {
@@ -107,8 +100,7 @@ public class ProfileController {
             model.addAttribute("imageData", base64Image);
             model.addAttribute("imageType", image.getType());
 
-        } catch (Exception e) {
-        }
+        } catch (Exception e) {}
 
         model.addAttribute("user", user);
         return "user/Profile";

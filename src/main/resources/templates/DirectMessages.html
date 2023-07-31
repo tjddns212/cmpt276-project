@@ -5,7 +5,14 @@
 
         <meta charset = "UTF-8">
         <link rel = "stylesheet" th:href = "@{/styles/DirectMessages.css}">
-
+        <script th:src = "@{/script/DirectMessages.js}" defer></script>
+        <script>
+            function bottom() {
+                window.scrollTo(0, document.body.scrollHeight)
+            }
+            history.scrollRestoration = "manual"
+            window.onload = bottom
+        </script>
 
         <title>DM</title>
 
@@ -13,11 +20,14 @@
 
     <body>
 
-        <header>
-			<a href="/"><img th:src="@{/images/roomlink_logo.png}" /></a>
+        <header style = "position: fixed">
+            <div style = "height: 100px; width: 100%; position: fixed; top: 0px; z-index: 9; background-color: #AAAAAA;"></div>
+			<a href="/"><img th:src="@{/images/roomlink_logo.png}" style = "z-index: 10; position: fixed;" /></a>
 		</header>
 
         <main>
+
+            <div style = "height: 100px;"></div>
 
             <div th:each = "message:${messages}">
                 <div th:if = "${message.sender == session.session_user.uid}" class = "send">
@@ -30,12 +40,18 @@
                 </div>
             </div>
 
-            <form action = "DM" method = "post">
-                <input name = "content" id = "content">
-                <button type = "submit">Send</button>
-            </form>
-
+            <div style = "height: 100px;"></div>
         </main>
+
+        <footer style = "width: 100%; margin-left: 0px;">
+            <div style = "height: 100px; width: 100%; position: fixed; bottom: 0px; z-index: 9; background-color: #AAAAAA; margin-left: 0px; padding-left: 0px;"></div>
+            <div style = "margin: auto; width: 256px;">
+                <form action = "DM" method = "post" style = "position: fixed; bottom: 50px; z-index: 10;">
+                    <input name = "content" id = "content" style = "width: 256px; height: 32px;">
+                    <button type = "submit">&#8617;</button>
+                </form>
+            </div>
+        </footer>
 
     </body>
 
