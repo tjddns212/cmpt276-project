@@ -40,7 +40,7 @@ public class SeleniumIntegrationTests {
     private String studentEmail = "student@123456.com";
     private String studentPassword = "123456";
 
-    int waitTime = 1000;
+    int waitTime = 500;
 
     @BeforeEach
     public void before() {

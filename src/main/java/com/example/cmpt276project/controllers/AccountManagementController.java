@@ -2,6 +2,7 @@ package com.example.cmpt276project.controllers;
 
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.ui.Model;
@@ -34,7 +35,7 @@ public class AccountManagementController {
             return "redirect:/error/404.html";
         }
 
-        List<User> users = userRepository.findAll();
+        List<User> users = userRepository.findAll(Sort.by(Sort.Direction.ASC, "uid"));
         model.addAttribute("users", users);
         return "account-management.html";
     }
