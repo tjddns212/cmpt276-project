@@ -2,7 +2,6 @@ package com.example.cmpt276project;
 
 import com.example.cmpt276project.models.User;
 import com.example.cmpt276project.models.UserRepository;
-import org.checkerframework.checker.units.qual.C;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.By;
@@ -11,14 +10,12 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.core.annotation.Order;
-import org.springframework.test.context.event.annotation.AfterTestClass;
-import org.springframework.test.context.event.annotation.BeforeTestClass;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.List;
 
 @SpringBootTest
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @ExtendWith(SpringExtension.class)
 public class SeleniumIntegrationTests {
 
@@ -38,17 +35,18 @@ public class SeleniumIntegrationTests {
 
     int waitTime = 1000;
 
-    @Test
-    public void testSignup() throws InterruptedException {
+    @BeforeEach
+    public void before() {
         driver = new ChromeDriver();
+    }
 
-        deleteTestUser();
-        signupAddLandlordAccountSucceeded();
-        signupAddLandlordAccountFailed();
-
+    @AfterEach
+    public void after() {
         driver.quit();
     }
 
+    @Test
+    @Order(1)
     public void deleteTestUser() {
         List<User> users = userRepository.findByEmail(email);
         if (!users.isEmpty()) {
@@ -56,6 +54,8 @@ public class SeleniumIntegrationTests {
         }
     }
 
+    @Test
+    @Order(2)
     public void signupAddLandlordAccountSucceeded() throws InterruptedException {
         String currentUri = domainUri + "/";
         driver.get(currentUri);
@@ -103,6 +103,8 @@ public class SeleniumIntegrationTests {
         Thread.sleep(waitTime);
     }
 
+    @Test
+    @Order(3)
     public void signupAddLandlordAccountFailed() throws InterruptedException {
         String currentUri = domainUri + "/";
         driver.get(currentUri);
