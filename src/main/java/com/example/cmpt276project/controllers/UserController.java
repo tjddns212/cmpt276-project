@@ -82,20 +82,20 @@ public class UserController {
     }
 
     // Get Reset Password
-    @GetMapping("/reset-password")
+    @GetMapping("/forgetPassword")
     public String getResetPassword() {
-        return "reset-password.html";
+        return "forgetPassword.html";
     }
 
     // Post Reset Password
-    @PostMapping("/reset-password")
+    @PostMapping("/forgetPassword")
     public String postResetPassword(@RequestParam String email, Model model) {
         List<User> users = userRepo.findByEmail(email);
 
         // Email does not exist
         if (users.isEmpty()) {
             model.addAttribute("message", "This email does not exist");
-            return "reset-password.html";
+            return "forgetPassword.html";
         }
 
         User user = users.get(0);
@@ -109,6 +109,6 @@ public class UserController {
             throw new RuntimeException(e);
         }
 
-        return "reset-password.html";
+        return "forgetPassword.html";
     }
 }
