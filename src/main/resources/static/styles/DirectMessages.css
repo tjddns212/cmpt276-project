@@ -1,0 +1,29 @@
+html {
+    background-color: #AAAAAA;
+}
+
+form {
+    position: absolute;
+    bottom: 100px;
+}
+
+h1 {
+    color: red;
+}
+
+.send, .receive {
+    width: 48%;
+    border-radius: 32px;
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+.send {
+    background-color: #00ff00;
+    margin-left: 50%;
+    text-align: right;
+}
+
+.receive {
+    background-color: white;
+}

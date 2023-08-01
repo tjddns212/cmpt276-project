@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.example.cmpt276project.models.Image;
 import com.example.cmpt276project.models.ImageRepository;
@@ -41,7 +42,11 @@ public class RoomsController {
     List<Room> rooms = roomRepo.findAll();
 
     model.addAttribute("r", rooms);
-    model.addAttribute("user", user);
+    User defaultUser = new User();
+    defaultUser.setNick("Default Nickname");
+
+    // Add either the user object or the default user object to the model
+    model.addAttribute("user", user != null ? user : defaultUser);
 
     return "rooms/showAll";
   }
@@ -88,4 +93,12 @@ public class RoomsController {
     return "rooms/ownerListings";
   }
 
+  @PostMapping("/rooms/delete/{uid}")
+  public RedirectView deleteListing(@PathVariable Integer uid, Model model, HttpSession session) {
+    User user = (User) session.getAttribute("session_user");
+    Integer id = user.getUid();
+    String url = "/ownerListings/" + id;
+    roomRepo.deleteById(uid);
+    return new RedirectView(url);
+  }
 }

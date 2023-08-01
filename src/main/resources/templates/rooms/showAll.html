@@ -16,15 +16,15 @@
       <a href="/" class="logo"><img src="../../images/roomlink_logo.png" alt="logo"></a>
       <nav id="nav">
         <a href="/rooms/view">LISTINGS</a>
-        <a href="#">FIND MY ROOMATE</a>
+        <a href="/findRoomates">FIND MY ROOMATE</a>
         <a href="/community.html">COMMUNITY</a>
-        <a href="#">FAQ</a>
+        <a href="/faq">FAQ</a>
         <div class="action">
           <div class="profile" onclick="menuToggle();">
             <img src="/images/illustration-of-human-icon-user-symbol-icon-modern-design-on-blank-background-free-vector.jpg" />
           </div>
           <div class="menu">
-            <h3>name </h3> <br />
+            <div th:replace ="fragments/login-nick :: menu"></div>
             <ul>
               <li>
                 <a href="/user/get">My profile</a>

@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
-
 import java.nio.charset.StandardCharsets;
 
 @Service
@@ -19,21 +18,20 @@ public class EmailService {
 
     @Autowired
     // Constructor
+
     public EmailService(JavaMailSender javaMailSender) {
         this.javaMailSender = javaMailSender;
     }
 
     // Send an email
-    public void sendEmail(String toEmailAddress, String emailSubject, String emailText)
-    {
+    public void sendEmail(String toEmailAddress, String emailSubject, String emailText) {
         try {
             MimeMessage mimeMessage = javaMailSender.createMimeMessage();
 
             MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(
                     mimeMessage,
                     MimeMessageHelper.MULTIPART_MODE_MIXED_RELATED,
-                    StandardCharsets.UTF_8.name()
-            );
+                    StandardCharsets.UTF_8.name());
 
             mimeMessageHelper.setFrom(fromEmailAddress);
             mimeMessageHelper.setTo(toEmailAddress);
@@ -41,8 +39,7 @@ public class EmailService {
             mimeMessageHelper.setText(emailText);
 
             javaMailSender.send(mimeMessage);
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
