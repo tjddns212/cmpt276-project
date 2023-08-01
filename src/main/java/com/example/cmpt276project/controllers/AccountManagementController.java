@@ -30,9 +30,9 @@ public class AccountManagementController {
     public String getAccountManagement(Model model, HttpSession session) {
         User user = (User) session.getAttribute("session_user");
         if (user == null) {
-            return "redirect:/error/404.html";
+            return "error/404.html";
         } else if (!user.isAdmin()) {
-            return "redirect:/error/404.html";
+            return "error/404.html";
         }
 
         List<User> users = userRepository.findAll(Sort.by(Sort.Direction.ASC, "uid"));
@@ -45,9 +45,9 @@ public class AccountManagementController {
     public String postDeleteAccount(@RequestParam int uid, HttpSession session, RedirectAttributes redirectAttributes) {
         User user = (User) session.getAttribute("session_user");
         if (user == null) {
-            return "redirect:/error/404.html";
+            return "error/404.html";
         } else if (!user.isAdmin()) {
-            return "redirect:/error/404.html";
+            return "error/404.html";
         }
 
         if (uid == user.getUid()) {

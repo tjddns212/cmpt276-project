@@ -30,9 +30,9 @@ public class PostManagementController {
     public String getPosts(Model model, HttpSession session) {
         User user = (User) session.getAttribute("session_user");
         if (user == null) {
-            return "redirect:/error/404.html";
+            return "error/404.html";
         } else if (!user.isAdmin()) {
-            return "redirect:/error/404.html";
+            return "error/404.html";
         }
 
         List<Room> rooms = roomRepository.findAll();
@@ -45,9 +45,9 @@ public class PostManagementController {
     public String deletePost(@RequestParam int uid, HttpSession session, RedirectAttributes redirectAttributes) {
         User user = (User) session.getAttribute("session_user");
         if (user == null) {
-            return "redirect:/error/404.html";
+            return "error/404.html";
         } else if (!user.isAdmin()) {
-            return "redirect:/error/404.html";
+            return "error/404.html";
         }
 
         roomRepository.deleteById(uid);
