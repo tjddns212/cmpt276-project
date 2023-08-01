@@ -151,4 +151,44 @@ public class SeleniumIntegrationTests {
         assert("This email is used".equals(messageLabel.getText()));
         Thread.sleep(waitTime);
     }
+
+    @Test
+    @Order(4)
+    public void loginAndLogoutLandlordAccount() throws InterruptedException {
+        String currentUri = domainUri + "/";
+        driver.get(currentUri);
+        Thread.sleep(waitTime);
+
+        // Main page
+        assert(currentUri.equals(driver.getCurrentUrl()));
+        WebElement signupButton = driver.findElement(By.xpath("//*[@id=\"sign-up\"]"));
+        WebElement loginButton = driver.findElement(By.xpath("//*[@id=\"log-in\"]"));
+        loginButton.click();
+        Thread.sleep(waitTime);
+
+        // Login page
+        currentUri = domainUri + "/login";
+        assert(currentUri.equals(driver.getCurrentUrl()));
+        WebElement emailEdittext = driver.findElement(By.xpath("//*[@id=\"email\"]"));
+        emailEdittext.sendKeys(email);
+        WebElement passwordEdittext = driver.findElement(By.xpath("//*[@id=\"password\"]"));
+        passwordEdittext.sendKeys(password);
+        WebElement loginButton2 = driver.findElement(By.xpath("/html/body/form/fieldset/a/input"));
+        loginButton2.submit();
+        Thread.sleep(waitTime);
+
+        // Main page
+        currentUri = domainUri + "/";
+        assert(currentUri.equals(driver.getCurrentUrl()));
+        WebElement profileButton = driver.findElement(By.xpath("//*[@id=\"nav\"]/div/div[1]/img"));
+        profileButton.click();
+        WebElement logoutButton = driver.findElement(By.xpath("//*[@id=\"nav\"]/div/div[2]/ul/li[3]/a"));
+        logoutButton.click();
+        Thread.sleep(waitTime);
+
+        // Main page
+        currentUri = domainUri + "/";
+        assert(currentUri.equals(driver.getCurrentUrl()));
+        Thread.sleep(waitTime);
+    }
 }
