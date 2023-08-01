@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.ui.Model;
 
 import com.example.cmpt276project.models.User;
-import com.example.cmpt276project.models.UserRepository;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -26,9 +25,9 @@ public class PostManagementController {
         this.roomRepository = roomRepository;
     }
 
-    // Get post management
+    // Get posts
     @GetMapping("/post-management")
-    public String getAccountManagement(Model model, HttpSession session) {
+    public String getPosts(Model model, HttpSession session) {
         User user = (User) session.getAttribute("session_user");
         if (user == null) {
             return "redirect:/error/404.html";
@@ -41,9 +40,9 @@ public class PostManagementController {
         return "post-management.html";
     }
 
-    // Post Delete Account
+    // Delete a post
     @PostMapping("/delete-post")
-    public String getDeleteAccount(@RequestParam int uid, HttpSession session, RedirectAttributes redirectAttributes) {
+    public String deletePost(@RequestParam int uid, HttpSession session, RedirectAttributes redirectAttributes) {
         User user = (User) session.getAttribute("session_user");
         if (user == null) {
             return "redirect:/error/404.html";

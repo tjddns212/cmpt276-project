@@ -41,7 +41,7 @@ public class AccountManagementController {
 
     // Post Delete Account
     @PostMapping("/delete-account")
-    public String getDeleteAccount(@RequestParam int uid, HttpSession session, RedirectAttributes redirectAttributes) {
+    public String postDeleteAccount(@RequestParam int uid, HttpSession session, RedirectAttributes redirectAttributes) {
         User user = (User) session.getAttribute("session_user");
         if (user == null) {
             return "redirect:/error/404.html";
@@ -57,6 +57,4 @@ public class AccountManagementController {
         userRepository.deleteById(uid);
         return "redirect:/account-management";
     }
-
-
 }
