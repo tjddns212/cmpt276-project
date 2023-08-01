@@ -9,6 +9,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.data.domain.Sort;
 import org.springframework.ui.Model;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -73,7 +74,7 @@ public class AccountManagementControllerTests {
         List<User> users = new ArrayList<>();
 
         given(httpSession.getAttribute("session_user")).willReturn(user);
-        given(userRepository.findAll()).willReturn(users);
+        given(userRepository.findAll(Sort.by(Sort.Direction.ASC, "uid"))).willReturn(users);
 
         String returnValue = accountManagementController.getAccountManagement(model, httpSession);
 
