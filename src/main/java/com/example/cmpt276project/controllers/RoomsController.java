@@ -77,6 +77,8 @@ public class RoomsController {
     String base64String = Base64.getEncoder().encodeToString(image.getImage());
     System.out.println(base64String);
     model.addAttribute("roomListing", newRoom);
+    model.addAttribute("user", user);
+
     return "rooms/roomListing";
   }
 
