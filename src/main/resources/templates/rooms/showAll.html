@@ -32,6 +32,9 @@
               <li th:if="${user != null and user.accountType == 'Landlord'}">
                 <a th:href="@{'/ownerListings/' + ${user.uid}}">My Listings</a>
               </li>
+              <li th:if="${user != null}">
+                <a href="/messages">Messages</a>
+              </li>
               <li>
               <a href="/logout">Logout</a>
               </li>
