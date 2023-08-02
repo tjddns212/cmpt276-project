@@ -30,8 +30,18 @@
       crossorigin="anonymous"
       defer
     ></script>
+    <script th:inline="javascript">
+      var user = /*[[${user}]]*/ "Default Name";
+      var roommates = /*[[${roommates}]]*/ "Default Name";
+    </script>
     <script src="../../scripts/menu.js" defer></script>
     <script src="../../scripts/auth.js" defer></script>
+    <script
+      src="../../scripts/findRoommates.js"
+      th:src="@{../../scripts/findRoommates.js}"
+      defer
+    ></script>
+
     <title>Document</title>
   </head>
   <body>
@@ -79,12 +89,13 @@
         Discover Compatible Roommates
         <span th:text="${user.first}"></span>
       </h1>
-      <div class="search-and-roommates-container">
-        <div class="search-container">
-          <label for="roommateName">Name: </label>
-          <input type="text" name="roommateName" id="roommateName" />
-        </div>
+    </div>
+    <div class="search-and-roommates-container">
+      <div class="search-container">
+        <label for="roommateName">Name: </label>
+        <input type="text" name="roommateName" id="roommateName" />
       </div>
+      <div class="roommates"></div>
     </div>
   </body>
 </html>

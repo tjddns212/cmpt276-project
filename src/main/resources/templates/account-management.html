@@ -17,7 +17,7 @@
             <th>First Name</th>
             <th>Last Name</th>
             <th>Nickname</th>
-            <th>Action</th>
+            <th>Delete Acc</th>
         </tr>
         <tr th:each="user: ${users}">
             <td th:text="${user.uid}"></td>
@@ -34,6 +34,8 @@
             </td>
         </tr>
     </table>
-
+    <p>
+        <a href="/post-management">Post Management</a>
+    </p>
     <p th:text="${message}"></p>
 </body>

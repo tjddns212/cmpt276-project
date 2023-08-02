@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+<html lang = "en">
+
+    <head>
+
+        <meta charset = "UTF-8">
+        <link rel = "stylesheet" th:href = "@{/styles/forum.css}">
+        <title>Community</title>
+
+    </head>
+
+    <body>
+
+        <header style = "position: fixed;">
+            <div style = "width: 100%; height: 100px; position: fixed; z-index: 9; background-color: #AAAAAA; top: 0px;"></div>
+            <a href = "/"><img th:src = "@{/images/roomlink_logo.png}" style = "z-index: 10; position: fixed;"></a>
+            <a href = "Post.html"><button style = "z-index: 10; position: fixed; right: 0px; font-size: 32px;">New Post</button></a>
+        </header>
+
+        <main>
+
+            <div style = "height: 100px;"></div>
+            <div th:each = "index:${length}">
+                <div class = "post">
+                    <h1 th:text = "${posts[index].topic}"></h1>
+                    <p th:text = "${posts[index].nick}" style = "position: absolute; left: 80px;"></p>
+                    <img class = "avatar" th:src = "@{'data:' + ${imageTypes[index]} + ';base64,' + ${imageDatas[index]}}">
+                    <p th:text = "${posts[index].time}" style = "float: right; color: blue;"></p>
+                    <pre th:text = "${posts[index].content}"></pre>
+                </div>
+            </div>
+
+        </main>
+
+        <footer>
+
+            <div style = "height: 100px;"></div>
+
+        </footer>
+
+    </body>
+
+</html>

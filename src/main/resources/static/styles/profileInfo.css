@@ -1,0 +1,36 @@
+.profile {
+  box-shadow: rgba(36, 36, 37, 0.2) 0px 7px 29px 0px;
+  padding: 2rem;
+  gap: 1.5rem;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  max-width: 600px;
+}
+
+.profileImage {
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+}
+
+.profile-container {
+  width: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  padding: 3rem;
+}
+
+h4 > span {
+  font-weight: normal;
+}
+
+.roommate-contact {
+  margin-top: 2rem;
+  font-family: "Poppins", sans-serif;
+  text-align: center;
+  color: #011d77;
+}

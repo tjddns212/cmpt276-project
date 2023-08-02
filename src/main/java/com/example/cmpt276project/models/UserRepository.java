@@ -12,7 +12,7 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     List<User> findByNick(String nick);
     List<User> findByFirst(String first);
 
-    List<User> findAll();
+//    List<User> findAllByOrderByIdAsc();
 
 //    @Query("DELETE FROM User u WHERE u.uid = ?1")
     void deleteById(int uid);

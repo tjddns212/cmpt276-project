@@ -54,4 +54,12 @@ public class Image {
         return Base64.getEncoder().encodeToString(this.getImage());
     }
 
+    public int getUid() {
+        return uid;
+    }
+
+    public void setUid(int uid) {
+        this.uid = uid;
+    }
+
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,19 +9,32 @@
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="../../styles/roomListing.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+      crossorigin="anonymous"
+    ></script>
+
     <link rel="stylesheet" href="../../styles/room-list.css" />
     <link rel="stylesheet" href="../../styles/auth.css" />
     <link rel="stylesheet" href="../../styles/menuBar.css" />
+    <link rel="stylesheet" href="../../styles/profileInfo.css" />
+
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
       crossorigin="anonymous"
       defer
     ></script>
+
     <script src="../../scripts/menu.js" defer></script>
     <script src="../../scripts/auth.js" defer></script>
-    <title>Room Listing</title>
+
+    <title>Document</title>
   </head>
   <body>
     <div class="inner">
@@ -45,7 +58,7 @@
             <div th:replace="fragments/login-nick :: menu"></div>
             <ul>
               <li>
-                <a href="/user/get">My profile</a>
+                <a href="#">My profile</a>
               </li>
               <li th:if="${user != null and user.accountType == 'Landlord'}">
                 <a th:href="@{'/ownerListings/' + ${user.uid}}">My Listings</a>
@@ -64,37 +77,42 @@
       </nav>
     </div>
     <div class="title">
-      <h1>Discover Your Home<span>VIEW LISTING</span></h1>
+      <h1>
+        Profile Information
+        <span th:text="${profileUser.first}"></span>
+      </h1>
     </div>
-    <div class="heading-container">
-      <h1>Room Listing</h1>
-      <a href="/rooms/view">View All listings</a>
-    </div>
-    <div class="room-container">
-      <h2 th:text="${roomListing.title}"></h2>
-      <img
-        th:src="@{'data:image/jpeg;base64,' + ${roomListing.image.encodeBytesToString()}}"
-        alt="Room Image"
-      />
-      <h4>Address</h4>
-      <p th:text="${roomListing.address}"></p>
-      <h4>City</h4>
-      <p th:text="${roomListing.city}"></p>
-      <h4>Price</h4>
-      <p th:text="'$' + ${roomListing.price}"></p>
-      <h4>Description</h4>
-      <p th:text="${roomListing.description}"></p>
-      <h4>Starting date</h4>
-      <p th:text="${roomListing.startingDate}"></p>
-      <h4>Ending date</h4>
-      <p th:text="${roomListing.endingDate}"></p>
+    <div class="profile-container">
+      <div class="profile">
+        <img
+          th:if="${profileImage != null}"
+          th:src="${'data:' + profileImage.type + ';base64,' + profileImage.encodeBytesToString()}"
+          alt="Roommate Image"
+          class="profileImage"
+        />
+        <img
+          th:unless="${profileImage != null}"
+          src="/images/illustration-of-human-icon-user-symbol-icon-modern-design-on-blank-background-free-vector.jpg"
+          alt="Default Roommate Image"
+          class="profileImage"
+        />
+        <h1
+          th:text="${profileUser.first} + ' ' + ${profileUser.last} + ' (' + ${profileUser.gender} + ')'"
+        >
+          User Profile
+        </h1>
+        <h4>
+          Contact Email:
+          <span th:text="${profileUser.email}"> </span>
+        </h4>
+        <h4>
+          Current Role:
+          <span th:text="${profileUser.accountType}"> </span>
+        </h4>
+        <p class="roommate-contact">
+          Get In Contact With Them Via Email To Find Your Potential Roommate!
+        </p>
+      </div>
     </div>
   </body>
 </html>
-<!-- private String title;
-    private String address;
-    private String city;
-    private Double price;
-    private String description;
-    private String startingDate;
-    private String endingDate; -->

@@ -2,6 +2,7 @@ package com.example.cmpt276project.controllers;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -55,6 +56,9 @@ public class MessageController {
         User sender = (User) session.getAttribute("session_user");
 
         List<Message> messages = messageRepo.findBySenderAndReceiver(sender.getUid(), receiver.getUid());
+        messages.addAll(messageRepo.findBySenderAndReceiver(receiver.getUid(), sender.getUid()));
+        
+        messages = sortMessage(messages);
 
         request.getSession().setAttribute("dmUser", receiver);
         model.addAttribute("messages", messages);
@@ -63,7 +67,7 @@ public class MessageController {
     }
 
     @PostMapping("DM")
-    public String sendMessage(@RequestParam Map<String, String> newMsg, HttpSession session) {
+    public String sendMessage(@RequestParam Map<String, String> newMsg, HttpSession session, Model model) {
 
         LocalDateTime dt = LocalDateTime.now();
         DateTimeFormatter f = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
@@ -71,11 +75,6 @@ public class MessageController {
 
         User sender = (User) session.getAttribute("session_user");
         User receiver = (User) session.getAttribute("dmUser");
-
-        System.out.println(newMsg.get("content"));
-        System.out.println(sender.getUid());
-        System.out.println(receiver.getUid());
-        System.out.println(fdt);
 
         Message msg = new Message();
         msg.setContent(newMsg.get("content"));
@@ -85,6 +84,23 @@ public class MessageController {
 
         messageRepo.save(msg);
 
+        List<Message> messages = messageRepo.findBySenderAndReceiver(sender.getUid(), receiver.getUid());
+        messages.addAll(messageRepo.findBySenderAndReceiver(receiver.getUid(), sender.getUid()));
+        messages = sortMessage(messages);
+
+        model.addAttribute("messages", messages);
+
         return "DirectMessages";
+    }
+
+    private List<Message> sortMessage(List<Message> messages) {
+        for (int i = 0; i < messages.size(); i ++) {
+            for (int j = 0; j < i; j ++) {
+                if (messages.get(i).getMid() < messages.get(j).getMid()) {
+                    Collections.swap(messages, i, j);
+                }
+            }
+        }
+        return messages;
     }
 }

@@ -1,0 +1,15 @@
+html {
+    background-color: #AAAAAA;
+}
+
+.post {
+    border: 1px solid black;
+    background-color: white;
+    color: black;
+    width: 50%;
+}
+
+.avatar {
+    width: 64px;
+    height: 64px;
+}

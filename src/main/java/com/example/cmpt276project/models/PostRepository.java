@@ -4,6 +4,6 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface RoomRepository extends JpaRepository<Room, Integer> {
-    List<Room> findByUid(int uid);
+public interface PostRepository extends JpaRepository<Post, Integer> {
+    List<Post> findAll();
 }

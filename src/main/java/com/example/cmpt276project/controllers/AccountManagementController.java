@@ -2,6 +2,7 @@ package com.example.cmpt276project.controllers;
 
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.ui.Model;
@@ -29,24 +30,24 @@ public class AccountManagementController {
     public String getAccountManagement(Model model, HttpSession session) {
         User user = (User) session.getAttribute("session_user");
         if (user == null) {
-            return "redirect:/error/404.html";
+            return "error/404.html";
         } else if (!user.isAdmin()) {
-            return "redirect:/error/404.html";
+            return "error/404.html";
         }
 
-        List<User> users = userRepository.findAll();
+        List<User> users = userRepository.findAll(Sort.by(Sort.Direction.ASC, "uid"));
         model.addAttribute("users", users);
         return "account-management.html";
     }
 
     // Post Delete Account
     @PostMapping("/delete-account")
-    public String getDeleteAccount(@RequestParam int uid, HttpSession session, RedirectAttributes redirectAttributes) {
+    public String postDeleteAccount(@RequestParam int uid, HttpSession session, RedirectAttributes redirectAttributes) {
         User user = (User) session.getAttribute("session_user");
         if (user == null) {
-            return "redirect:/error/404.html";
+            return "error/404.html";
         } else if (!user.isAdmin()) {
-            return "redirect:/error/404.html";
+            return "error/404.html";
         }
 
         if (uid == user.getUid()) {
