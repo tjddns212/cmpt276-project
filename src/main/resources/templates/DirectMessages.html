@@ -23,6 +23,7 @@
         <header style = "position: fixed">
             <div style = "height: 100px; width: 100%; position: fixed; top: 0px; z-index: 9; background-color: #AAAAAA;"></div>
 			<a href="/"><img th:src="@{/images/roomlink_logo.png}" style = "z-index: 10; position: fixed;" /></a>
+            <h1 th:text = "${session.dmUser.nick}" style = "z-index: 10; position: fixed; text-align: center; width: 100%; color: white;"></h1>
 		</header>
 
         <main>

@@ -47,6 +47,9 @@ public class CommunityController {
 
         for (int i = 0; i < posts.size(); i ++) {
             List<Image> images = imageRepo.findByUid(userRepo.findByUid(posts.get(i).getPoster()).get(0).getAvatar());
+            if (images.size() == 0) {
+                images = imageRepo.findByUid(72);
+            }
             Image image = images.get(0);
             byte[] imageData = image.getImage();
             String base64Image = Base64.getEncoder().encodeToString(imageData);
@@ -68,6 +71,10 @@ public class CommunityController {
     public String newPost(@RequestParam Map<String, String> post, HttpSession session) {
         User poster = (User) session.getAttribute("session_user");
         
+        if (poster == null) {
+            return "login";
+        }
+
         Post p = new Post();
 
         p.setTopic(post.get("title"));

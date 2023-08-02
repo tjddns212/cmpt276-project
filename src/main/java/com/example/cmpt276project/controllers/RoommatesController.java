@@ -30,7 +30,7 @@ public class RoommatesController {
     public String showPossibleRoommates(Model model, HttpSession session) {
         User user = (User) session.getAttribute("session_user");
         if (user == null) {
-            return "/login";
+            return "redirect:/login";
         }
         model.addAttribute("user", user);
         List<User> possibleRoommates = userRepo.findAll().stream()
@@ -38,7 +38,7 @@ public class RoommatesController {
                         && possibleRoommate.getAccountType().equals("Student"))
                 .collect(Collectors.toList());
         model.addAttribute("roommates", possibleRoommates);
-        return "roommates/RoommatesSearch";
+        return "roommates/RoommatesSearch.html";
     }
 
     @GetMapping("/ProfileInfo/{uid}")
@@ -56,6 +56,6 @@ public class RoommatesController {
         System.out.println(profileImage);
         model.addAttribute("profileImage", image);
 
-        return "roommates/ProfileInfo";
+        return "roommates/ProfileInfo.html";
     }
 }
