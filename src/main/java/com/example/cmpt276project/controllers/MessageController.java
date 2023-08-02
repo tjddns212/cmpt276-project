@@ -55,6 +55,8 @@ public class MessageController {
         User receiver = users.get(0);
         User sender = (User) session.getAttribute("session_user");
 
+        if (sender == null) return "login";
+
         List<Message> messages = messageRepo.findBySenderAndReceiver(sender.getUid(), receiver.getUid());
         messages.addAll(messageRepo.findBySenderAndReceiver(receiver.getUid(), sender.getUid()));
         

@@ -6,13 +6,6 @@
 
         <meta charset = "UTF-8">
         <link rel = "stylesheet" th:href = "@{/styles/forum.css}">
-        <script>
-            function botton() {
-                window.scrollTo(0, document.body.scrollHeight)
-            }
-            history.scrollRestoration = "manual"
-            window.onload = bottom
-        </script>
         <title>Community</title>
 
     </head>
@@ -22,28 +15,29 @@
         <header style = "position: fixed;">
             <div style = "width: 100%; height: 100px; position: fixed; z-index: 9; background-color: #AAAAAA; top: 0px;"></div>
             <a href = "/"><img th:src = "@{/images/roomlink_logo.png}" style = "z-index: 10; position: fixed;"></a>
-            <a href = "Post.html"><button style = "z-index: 10; position: fixed; right: 0px;">New Post</button></a>
+            <h1 style = "color: white; position: fixed; z-index: 10; left: 256px; font-size: 64px; margin-top: 8px;">Community</h1>
+            <a href = "Post.html"><button style = "z-index: 10; position: fixed; right: 0px; font-size: 32px;">New Post</button></a>
         </header>
 
         <main>
 
             <div style = "height: 100px;"></div>
-            <div th:each = "post:${posts}">
-                <div style = "border: 1px solid red;">
-                    <p th:text = "${post.nick}"></p>
-                    <p th:text = "${post.time}"></p>
-                    <p th:text = "${post.topic}"></p>
-                    <pre th:text = "${post.content}"></pre>
-                </div>
+            <div th:each = "index:${length}">
+                <form class = "post" action = "DM" method = "get">
+                    <input name = "uid" id = "uid" th:value = "${posts[index].poster}" style = "position: absolute; visibility: hidden;">
+                    <button style = "height: 80px;">
+                        <p th:text = "${posts[index].nick}" style = "float: right; height: 64px; margin-top: 32px; margin-bottom: 0px; padding: 0px; margin-left: 10px;"></p>
+                        <img class = "avatar" th:src = "@{'data:' + ${imageTypes[index]} + ';base64,' + ${imageDatas[index]}}">
+                    </button>
+                    <p th:text = "${posts[index].time}" style = "float: right; color: blue;"></p>
+                    <h1 th:text = "${posts[index].topic}" style = "float: right; text-align: left; width: 45%;"></h1>
+                    <hr>
+                    <pre th:text = "${posts[index].content}"></pre>
+                </form>
+                <br>
             </div>
 
         </main>
-
-        <footer>
-
-            <div style = "height: 100px;"></div>
-
-        </footer>
 
     </body>
 

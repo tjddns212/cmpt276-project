@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../styles/auth.css" />
+    <link rel="stylesheet" href="../styles/menuBar.css" />
+    <link rel="stylesheet" href="../styles/postFaq.css" />
+    <script src="./scripts/auth.js" defer></script>
+    <title>postFAQ</title>
+  </head>
+  <body>
+    <header id="header">
+      <div class="inner">
+        <a href="/" class="logo"
+          ><img src="./images/roomlink_logo.png" alt="logo"
+        /></a>
+        <nav id="nav">
+          <a href="/rooms/view">LISTINGS</a>
+          <a href="/findRoomates">FIND MY ROOMATE</a>
+          <a href="/">COMMUNITY</a>
+          <a href="/faq">FAQ</a>
+          <div class="action">
+            <div class="profile" onclick="menuToggle();">
+              <img
+                src="/images/illustration-of-human-icon-user-symbol-icon-modern-design-on-blank-background-free-vector.jpg"
+              />
+            </div>
+            <div class="menu">
+              <div th:replace="fragments/login-nick :: menu"></div>
+              <ul>
+                <li>
+                  <a href="user/get">My profile</a>
+                </li>
+                <li>
+                  <a href="message.html">DM</a>
+                </li>
+                <li>
+                  <a href="/logout">Logout</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <a href="/chooseuser.html" id="sign-up" class="btn btn-signup"
+            >Sign Up</a
+          >
+          <a href="/login" id="log-in" class="btn btn-login" git>Login</a>
+        </nav>
+      </div>
+    </header>
+    <div class="container">
+      <h1>Post a Question</h1>
+      <form action="/postQ" method="post">
+        <label for="question-title">Title</label>
+        <input type="text" id="question-title" name="title" required />
+
+        <label for="question-body">Question</label>
+        <textarea id="question-body" name="body" required></textarea>
+
+        <button type="submit">POST</button>
+      </form>
+    </div>
+  </body>
+</html>
