@@ -42,4 +42,9 @@
 .roommate a {
   cursor: pointer;
   color: white !important;
+  font-weight: bold;
+}
+
+.roommate p {
+  font-weight: bold;
 }

@@ -37,6 +37,52 @@
     <title>Document</title>
   </head>
   <body>
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <form th:action="'/sendMessage/' + ${profileUser.uid}" method="post">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">
+                Send A Message
+              </h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              >
+                X
+              </button>
+            </div>
+            <textarea
+              class="modal-body"
+              placeholder="Write message here..."
+              id="content"
+              name="content"
+            ></textarea>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <button type="submit" class="btn btn-primary">
+                Send Message
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
     <div class="inner">
       <a href="/" class="logo"
         ><img src="../../images/roomlink_logo.png" alt="logo"
@@ -102,15 +148,24 @@
           User Profile
         </h1>
         <h4>
-          Contact Email:
-          <span th:text="${profileUser.email}"> </span>
+          Nickname:
+          <span th:text="${profileUser.nick}"> </span>
         </h4>
         <h4>
           Current Role:
           <span th:text="${profileUser.accountType}"> </span>
         </h4>
+        <button
+          type="button"
+          class="btn btn-primary"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
+        >
+          Send Message
+        </button>
         <p class="roommate-contact">
-          Get In Contact With Them Via Email To Find Your Potential Roommate!
+          Get In Contact With Them Via A Message To Find Your Potential
+          Roommate!
         </p>
       </div>
     </div>

@@ -1,6 +1,7 @@
 const priceFilterButton = document.getElementById("price-filter");
 const locationSelect = document.querySelector("select");
 const roomCards = document.querySelectorAll(".room-card");
+const roomCardsParent = document.querySelector(".room-cards");
 
 priceFilterButton.addEventListener("click", () => {
   sortByPrice();
