@@ -23,6 +23,7 @@ public class RoomListing {
         Room roomListing = roomsRepo.findById(id).get();
         model.addAttribute("roomListing", roomListing);
         model.addAttribute("user", user);
+        
         return "rooms/roomListing";
     }
 }

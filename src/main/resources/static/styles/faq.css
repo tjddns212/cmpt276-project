@@ -4,7 +4,6 @@ body {
   padding: 0;
 }
 .c-faq__answer {
-  position: absolute;
   opacity: 0;
   z-index: -1;
 }
@@ -58,7 +57,7 @@ body *::before {
 .c-faq {
   font-family: "Varela Round", sans-serif;
   list-style: none;
-  margin: 10px 0 5px;
+  margin: 25px 0 5px;
 }
 
 .c-faq__title {
@@ -68,6 +67,7 @@ body *::before {
   z-index: 10;
   position: relative;
   font-size: 1.1em;
+  margin-right: 300px;
 }
 .c-faq__title:hover {
   text-decoration: underline;
@@ -97,8 +97,9 @@ body *::before {
   margin-top: -10%;
   transition: all 0.1s;
   z-index: 1;
-  font-size: 0.9em;
+  font-size: 1.1em;
   color: #505050;
+  display: none;
 }
 
 .c-faq--active .c-faq__answer {
@@ -114,42 +115,34 @@ body *::before {
   border: 1px solid #f1f2f3;
   border-top: 1px solid #1e88e5;
   padding: 20px;
+  display: block;
+}
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  color: white;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  margin: 4px 15px;
+  transition-duration: 0.4s;
+  cursor: pointer;
 }
 
-@media (min-width: 780px) {
-  .c-faqs {
-    position: relative;
-    margin-left: auto;
-    margin-right: auto;
-    height: auto;
-  }
-
-  .c-faqs::before {
-    opacity: 0.2;
-  }
-
-  .c-faq {
-    margin-top: 15px;
-    margin-bottom: 15px;
-  }
-  .c-faq .c-faq__title {
-    width: 50%;
-    padding-right: 40px;
-    display: inline-block;
-  }
-  .c-faq .c-faq__title::after {
-    display: none;
-  }
-  .c-faq .c-faq__answer {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    left: 50%;
-    width: 50%;
-    border-left-color: #1e88e5;
-    border-top-color: #f1f2f3;
-  }
+.btn-post-question {
+  background-color: #007bff;
+  color: white;
+  border: 2px solid #007bff;
 }
+
+.btn-post-question:hover {
+  background-color: white;
+  color: #007bff;
+}
+
 .c-note {
   font-size: 0.8em;
   padding-left: 15px;
@@ -162,4 +155,40 @@ body *::before {
 }
 .c-note a {
   color: #1e88e5;
+}
+.show-answer {
+  display: none;
+  width: 800px;
+  height: 170px;
+}
+.show-answer span {
+  display: inline-block;
+  width: 100px;
+}
+
+.right {
+  text-align: right;
+}
+
+.answer-form {
+  display: none;
+}
+#description {
+  font-weight: 500;
+}
+#answer {
+  margin: 20px 0;
+}
+.a-container {
+  max-width: 1100px;
+  margin-bottom: 50px;
+  margin-left: auto;
+  margin-right: auto;
+}
+textarea {
+  width: 100%;
+  box-sizing: border-box;
+}
+.smaller {
+  font-size: 12px;
 }
