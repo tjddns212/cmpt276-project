@@ -132,7 +132,7 @@
       <div class="profile">
         <img
           th:if="${profileImage != null}"
-          th:src="${'data:' + profileImage.type + ';base64,' + profileImage.encodeBytesToString()}"
+          th:src="@{'data:' + ${profileImage.type} + ';base64,' + ${profileImage.encodeBytesToString()}}"
           alt="Roommate Image"
           class="profileImage"
         />

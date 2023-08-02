@@ -5,6 +5,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +17,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.view.RedirectView;
 
+import com.example.cmpt276project.models.Image;
+import com.example.cmpt276project.models.ImageRepository;
 import com.example.cmpt276project.models.Message;
 import com.example.cmpt276project.models.MessageRepository;
 import com.example.cmpt276project.models.User;
@@ -31,6 +35,9 @@ public class MessageController {
 
     @Autowired
     public MessageRepository messageRepo;
+
+    @Autowired
+    public ImageRepository imageRepo;
 
     @GetMapping("DM")
     public String getMessages(@RequestParam Map<String, String> targetUser, Model model, HttpSession session,
@@ -107,7 +114,29 @@ public class MessageController {
     public String getMessages(Model model, HttpSession session) {
         User user = (User) session.getAttribute("session_user");
         List<Message> messages = messageRepo.findByReceiver(user.getUid());
+        List<User> users = messages.stream().map(message -> userRepo.findById(message.getSender()).get())
+                .collect(Collectors.toList());
+        List<Image> images = users.stream().map(messageUser -> {
+            Optional<Image> possibleImage = imageRepo.findById(Long.valueOf(messageUser.getAvatar()));
+            Image image = null;
+            if (possibleImage.isPresent()) {
+                image = possibleImage.get();
+            }
+            return image;
+        }).collect(Collectors.toList());
+        System.out.println("======================================");
+        System.out.println(messages.size());
+        System.out.println(users.size());
+        System.out.println(images.size());
+        System.out.println(images.get(0).getName());
+        System.out.println(images.get(0).encodeBytesToString());
+
+        System.out.println("======================================");
+
+        model.addAttribute("images", images);
         model.addAttribute("messages", messages);
+        model.addAttribute("users", users);
+
         model.addAttribute("user", user);
         return "messages/ViewMessages";
     }
