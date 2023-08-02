@@ -192,3 +192,6 @@ textarea {
 .smaller {
   font-size: 12px;
 }
+.submit-button {
+  text-align: right;
+}

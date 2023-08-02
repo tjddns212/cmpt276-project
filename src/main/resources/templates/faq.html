@@ -158,7 +158,10 @@
             <form th:action="@{/submitAnswer}" th:method="post" class="answer-form">
               <textarea class="answer-input" rows="4" cols="50" th:name="answer"></textarea>
               <input type="hidden" th:name="qid" th:value="${question.qid}"/>
-              <button type="submit" class="submit-answer">Submit</button>
+              <div class="submit-button">
+                <button type="submit" class="submit-answer">Submit</button>
+              </div>
+              
             </form>  
             </div>
         </li>
