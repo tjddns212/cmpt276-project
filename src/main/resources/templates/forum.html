@@ -15,6 +15,7 @@
         <header style = "position: fixed;">
             <div style = "width: 100%; height: 100px; position: fixed; z-index: 9; background-color: #AAAAAA; top: 0px;"></div>
             <a href = "/"><img th:src = "@{/images/roomlink_logo.png}" style = "z-index: 10; position: fixed;"></a>
+            <h1 style = "color: white; position: fixed; z-index: 10; left: 256px; font-size: 64px; margin-top: 8px;">Community</h1>
             <a href = "Post.html"><button style = "z-index: 10; position: fixed; right: 0px; font-size: 32px;">New Post</button></a>
         </header>
 
@@ -22,22 +23,21 @@
 
             <div style = "height: 100px;"></div>
             <div th:each = "index:${length}">
-                <div class = "post">
-                    <h1 th:text = "${posts[index].topic}"></h1>
-                    <p th:text = "${posts[index].nick}" style = "position: absolute; left: 80px;"></p>
-                    <img class = "avatar" th:src = "@{'data:' + ${imageTypes[index]} + ';base64,' + ${imageDatas[index]}}">
+                <form class = "post" action = "DM" method = "get">
+                    <input name = "uid" id = "uid" th:value = "${posts[index].poster}" style = "position: absolute; visibility: hidden;">
+                    <button style = "height: 80px;">
+                        <p th:text = "${posts[index].nick}" style = "float: right; height: 64px; margin-top: 32px; margin-bottom: 0px; padding: 0px; margin-left: 10px;"></p>
+                        <img class = "avatar" th:src = "@{'data:' + ${imageTypes[index]} + ';base64,' + ${imageDatas[index]}}">
+                    </button>
                     <p th:text = "${posts[index].time}" style = "float: right; color: blue;"></p>
+                    <h1 th:text = "${posts[index].topic}" style = "float: right; text-align: left; width: 45%;"></h1>
+                    <hr>
                     <pre th:text = "${posts[index].content}"></pre>
-                </div>
+                </form>
+                <br>
             </div>
 
         </main>
-
-        <footer>
-
-            <div style = "height: 100px;"></div>
-
-        </footer>
 
     </body>
 

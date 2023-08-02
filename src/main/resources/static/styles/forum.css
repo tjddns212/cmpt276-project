@@ -7,9 +7,11 @@ html {
     background-color: white;
     color: black;
     width: 50%;
+    margin: auto;
 }
 
 .avatar {
     width: 64px;
     height: 64px;
+    margin-top: 4px;
 }
